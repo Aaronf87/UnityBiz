@@ -1,69 +1,59 @@
-const User = require('./models/user');
+// Import the required modules
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+require("dotenv").config();
+const exphbs = require("express-handlebars");
+const hbs = exphbs.create({});
+const sequelize = require("./config/connection");
+
+// Import the models
+const User = require('./models/employee');
 const Company = require('./models/company');
 const Newsletter = require('./models/newsletter');
 
-// Import node.js path module provides utilities for working with file and directory paths.
-const path = require("path");
-
-// Imports Express.js.
-const express = require("express");
-
-// Import express-session
-const session = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
-// Import dotenv environment variables.
-require("dotenv").config();
-
-// Import express-handlebars
-const exphbs = require("express-handlebars");
-const hbs = exphbs.create({});
-
-// Import the routes.
+// Import the routes
 const routes = require("./controllers");
+const newsRoutes = require('./controllers/api/newsRoutes');  // Make sure to adjust the path to your newsRoutes file
 
-// Import the connection object: Sequelize connection.
-const sequelize = require("./config/connection");
-
-// Sets up the Express App
+// Initialize Express and define other variables
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up sessions with cookies
+// Configure sessions
 const sess = {
   secret: process.env.SESSION_PASSWORD,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    httpOnly: true,
-    secure: false,
-    sameSite: "strict",
+    maxAge: 24 * 60 * 60 * 1000,
   },
   resave: false,
   saveUninitialized: true,
-  // Sets up session store where we will hold the cookie
   store: new SequelizeStore({
     db: sequelize,
   }),
 };
 
-// Set Handlebars.js as the default template engine.
+// Use sessions
+app.use(session(sess));
+
+// Set up Handlebars.js
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
-// Middleware to handle session.
-app.use(session(sess));
-
-// Middleware for parsing JSON and urlencoded form data.
+// Set up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Middleware pointing to the public directory (absolute path).
 app.use(express.static(path.join(__dirname, "public")));
 
-//Send all the requests that begin with / to the index.js in the routes folder.
-app.use(routes);
+// Use the API routes
+app.use('/api/newsletters', newsRoutes);  // This will make your newsletter routes available under /api/newsletters
 
-// Synchronize sequelize models to the database before starting Express.js server, then turn on the server
+// Uncomment this if you want to use other routes as well
+// app.use(routes);
+
+// Start the server after syncing the database models
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening!"));
+  app.listen(PORT, () => console.log(`Now listening on port ${PORT}!`));
 });
+

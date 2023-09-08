@@ -24,7 +24,7 @@ const Employee = sequelize.define('Employee', {
   employee_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'company',
+      model: 'companies',  // Updated to 'companies'
       key: 'id',
     }
   }
@@ -32,4 +32,5 @@ const Employee = sequelize.define('Employee', {
 });
 
 module.exports = Employee;
+
 

@@ -3,7 +3,7 @@ const router = require("express").Router();
 const companyRoutes = require("./companyRoutes");
 const employeeRoutes = require("./employeeRoutes");
 
-const newsRoutes = require("./newRoutes");
+const newsRoutes = require("./newsRoutes");
 
 // *** Communication and PO routes on hold for now....
 // const comsRoutes = require("./commentRoutes");
