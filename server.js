@@ -1,3 +1,7 @@
+const User = require('./models/user');
+const Company = require('./models/company');
+const Newsletter = require('./models/newsletter');
+
 // Import node.js path module provides utilities for working with file and directory paths.
 const path = require("path");
 
