@@ -18,9 +18,9 @@ const Newsletter = sequelize.define(
     },
     employee_id: {
       type: DataTypes.INTEGER,
-      reference: {
+      references: {  // Note: It should be 'references' not 'reference'
         model: "employee",
-        key: 
+        key: "id"  // Added this line to complete the foreign key reference
       }
     }
   },
@@ -33,3 +33,4 @@ const Newsletter = sequelize.define(
 );
 
 module.exports = Newsletter;
+

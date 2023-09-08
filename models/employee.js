@@ -1,43 +1,35 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/connection');
 
-const Employee = sequelize.define(
-  "Employee",
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    last_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [10],
-      },
-    },
-    company_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "company", 
-        key: "id",
-      },
+const Employee = sequelize.define('Employee', {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: [10],
     },
   },
-  {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: "employee",
+  // Here's where you put the foreign key reference
+  company_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'company',  // This should match the table name in the database
+      key: 'id',
+    }
   }
-);
+});
 
 module.exports = Employee;
+
