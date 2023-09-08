@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4 } = require('sequelize');
+const { Model, DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('../config/connection');
 
 const Company = sequelize.define('Company', {
@@ -17,8 +17,16 @@ const Company = sequelize.define('Company', {
     defaultValue: UUIDV4,
     allowNull: false,
     unique: true
-  }
-  // Add other fields as required
-});
+  },
+
+},
+{
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: "company",
+}
+);
 
 module.exports = Company;
