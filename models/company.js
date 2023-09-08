@@ -3,19 +3,20 @@ const sequelize = require('../config/connection');
 
 const Company = sequelize.define('Company', {
   id: {
-    type: DataTypes.UUID,
-    defaultValue: UUIDV4,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
   company_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
+    defaultValue: UUIDV4,
     allowNull: false,
-    unique: true,
+    unique: true
   }
   // Add other fields as required
 });
