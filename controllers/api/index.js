@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const companyRoutes = require("./companyRoutes");
-const employeeRoutes = require("./employeeRoutes");
+// const employeeRoutes = require("./employeeRoutes");
 
 const newsRoutes = require("./newsRoutes");
 
@@ -14,7 +14,7 @@ const newsRoutes = require("./newsRoutes");
 router.use("/company", companyRoutes);
 
 //Send all the requests that begin with /api/employee to the employeeRoutes.js in the api folder.
-router.use("/employee", employeeRoutes);
+// router.use("/employee", employeeRoutes);
 
 //Send all the requests that begin with /api/comments to the newsRoutes.js in the api folder.
 router.use("/news", newsRoutes);

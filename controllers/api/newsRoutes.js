@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Newsletter = require('../../models/newsletter');  // adjust the path to your Newsletter model
+const Newsletter = require('../../models/Newsletter');  // adjust the path to your Newsletter model
 
 console.log("Imported Newsletter model:", Newsletter); // Log the imported Newsletter model
 
