@@ -1,6 +1,6 @@
 const { Model, DataTypes, UUIDV4 } = require("sequelize");
-const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
 class Company extends Model {
   // Function will compare company's hashed password.
