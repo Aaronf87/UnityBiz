@@ -67,17 +67,17 @@ PO.init(
     // Reference to Company creating/needing PO
     company_id: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "company",
+      reference: {
         key: "id",
+        model: "company",
       },
     },
     // Reference to Employee creating/needing PO
     employee_id: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "employee",
+      reference: {
         key: "id",
+        model: "employee",
       },
     },
   },

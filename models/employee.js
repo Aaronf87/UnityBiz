@@ -45,9 +45,9 @@ Employee.init(
     company_id: {
       // Links employee to the company.
       type: DataTypes.INTEGER,
-      references: {
-        model: "company",
+      reference: {
         key: "id",
+        model: "company",
       },
     },
   },

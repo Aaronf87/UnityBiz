@@ -32,17 +32,17 @@ Newsletter.init(
     company_id: {
       // Links newsletter to the company
       type: DataTypes.INTEGER,
-      references: {
-        model: "company",
+      reference: {
         key: "id",
+        model: "company",
       },
     },
     employee_id: {
       // Links newsletter to the employee who created this newsletter
       type: DataTypes.INTEGER,
-      references: {
-        model: "employee",
+      reference: {
         key: "id", // Added this line to complete the foreign key reference
+        model: "employee",
       },
     },
   },
