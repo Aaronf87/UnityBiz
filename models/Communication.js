@@ -5,13 +5,13 @@ class Communication extends Model {}
 
 Communication.init(
   {
-    // id: {
-    //   // Message Table ID
-    //   type: DataTypes.INTEGER,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    //   allowNull: false,
-    // },
+    id: {
+      // Message Table ID
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
     title: {
       // Title of Message
       type: DataTypes.STRING,
