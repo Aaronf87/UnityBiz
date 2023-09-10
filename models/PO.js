@@ -73,7 +73,7 @@ PO.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "employee",
+    modelName: "po",
   }
 );
 

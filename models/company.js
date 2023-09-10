@@ -2,7 +2,12 @@ const { Model, DataTypes, UUIDV4 } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
-class Company extends Model {}
+class Company extends Model {
+  // Function will compare company's hashed password.
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
 Company.init(
   {
@@ -43,7 +48,7 @@ Company.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    company_id: { 
+    company_id: {
       // Unique Identifier to link Employee with Company
       // We will not use company table id because it is less secure
       type: DataTypes.UUID,
