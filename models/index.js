@@ -1,5 +1,5 @@
 // Import models
-const Company = require("./Communication");
+const Company = require("./Company");
 const Employee = require("./Employee");
 const Newsletter = require("./Newsletter");
 const PO = require("./PO");
