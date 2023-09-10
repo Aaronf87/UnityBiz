@@ -1,0 +1,30 @@
+[
+  {
+    "po_number": 190004,
+    "invoice_number": 3590605,
+    "goods": "Elevator Maintenance",
+    "description": "Elevator Fix",
+    "cost": 1800.0,
+    "vendor_name": "Elevator FixerUppers",
+    "vendor_address": "1784 Random Address St.",
+    "vendor_state": "Texas",
+    "vendor_city": "Houston",
+    "vendor_zip": 79886,
+    "company_id": 1,
+    "employee_id": 2
+  },
+  {
+    "po_number": 190005,
+    "invoice_number": 9405094,
+    "goods": "Fleet Vehicle Maintenance",
+    "description": "Maintenance for broken down shuttle vehicle.",
+    "cost": 125.0,
+    "vendor_name": "Ford of Insert City Name",
+    "vendor_address": "1222 Random Address St.",
+    "vendor_state": "Texas",
+    "vendor_city": "Dallas",
+    "vendor_zip": 79386,
+    "company_id": 1,
+    "employee_id": 2
+  }
+]

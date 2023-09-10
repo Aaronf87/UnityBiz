@@ -1,22 +1,36 @@
 const sequelize = require("../config/connection");
-const { User, Post, Comment } = require("../models");
+const {
+  Company,
+  Employee,
+  Newsletter,
+  PO,
+  Communication,
+} = require("../models");
 
-const userData = require("./userData.json");
-const postData = require("./postData.json");
-const commentData = require("./commentData.json");
+const companyData = require("./companyData.json");
+const employeeData = require("./employeeData.json");
+const newletterData = require("./newsletterData.json");
+const poData = require("./poData.json");
+const communicationData = require("./communicationData.json");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- DATABASE SYNCED -----\n");
 
-  await User.bulkCreate(userData);
-  console.log("\n----- TEST USERS SEEDED -----\n");
+  await Company.bulkCreate(companyData);
+  console.log("\n----- TEST Company SEEDED -----\n");
 
-  await Post.bulkCreate(postData);
-  console.log("\n----- TEST POSTS SEEDED -----\n");
+  await Employee.bulkCreate(employeeData);
+  console.log("\n----- TEST Employee SEEDED -----\n");
 
-  await Comment.bulkCreate(commentData);
-  console.log("\n----- TEST COMMENTS SEEDED -----\n");
+  await Newsletter.bulkCreate(newletterData);
+  console.log("\n----- TEST Newsletter SEEDED -----\n");
+
+  await PO.bulkCreate(poData);
+  console.log("\n----- TEST PO SEEDED -----\n");
+
+  await Communication.bulkCreate(communicationData);
+  console.log("\n----- TEST Communication SEEDED -----\n");
 
   process.exit(0);
 };

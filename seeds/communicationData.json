@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Saw you on your phone....",
+    "content": "Please do your work during working hours. You have been slacking...",
+    "creator_id": 1,
+    "recipient_id": 2
+  },
+  {
+    "title": "Please make sure you send that PO by end of day",
+    "content": "We need to get the elevator maintenance guys paid...",
+    "creator_id": 2,
+    "recipient_id": 3
+  },
+  {
+    "title": "We hit our goal!",
+    "content": "Thank you for your hard work and dedication! ",
+    "creator_id": 1,
+    "recipient_id": 3
+  },
+  {
+    "title": "Do something about those lights!",
+    "content": "They are too damn bright man. I need to work. My poor eyes.",
+    "creator_id": 3,
+    "recipient_id": 4
+  },
+  {
+    "title": "What do I do when a PO does not work",
+    "content": "I submitted a PO and it does not work",
+    "creator_id": 4,
+    "recipient_id": 1
+  },
+  {
+    "title": "Tell me I am awesome without saying I am awesome",
+    "content": "I just fixed your problem man! Pay me!",
+    "creator_id": 2,
+    "recipient_id": 1
+  }
+]

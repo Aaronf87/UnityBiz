@@ -20,12 +20,12 @@ Employee.init(
     },
     first_name: {
       // Employee First Name
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     last_name: {
       // Employee Last Name
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     username: {

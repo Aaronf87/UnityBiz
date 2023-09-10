@@ -12,7 +12,7 @@ Communication.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    content: {
+    title: {
       // Title of Message
       type: DataTypes.TEXT,
       allowNull: false,

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "UnityBiz",
+    "phone": "888-888-8888",
+    "state": "Texas",
+    "city": "Houston",
+    "address": "1890 Random St.",
+    "zip": 79086,
+    "admin": "admin",
+    "password": "password12345"
+  },
+  {
+    "name": "CompetetorBiz",
+    "phone": "999-999-9999",
+    "state": "Texas",
+    "city": "Dallas",
+    "address": "1900 Random St.",
+    "zip": 79086,
+    "admin": "admin",
+    "password": "password12345"
+  }
+]

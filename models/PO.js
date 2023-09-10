@@ -26,6 +26,11 @@ PO.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      // Description of the goods or services.
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     cost: {
       // Cost of goods
       type: DataTypes.DECIMAL(10, 2),

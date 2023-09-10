@@ -20,16 +20,16 @@ Company.init(
     },
     name: {
       // Company Name
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     phone: {
       // Company Phone Number
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    address: {
-      // Company Address
+    state: {
+      // Company State
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -38,8 +38,8 @@ Company.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    state: {
-      // Company State
+    address: {
+      // Company Address
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -58,12 +58,12 @@ Company.init(
     },
     admin: {
       // Administrator for the company that may modify important details.
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
       // Password for Company Administrator.
-      type: DataTypes.STRING(60),
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [10], // Password must be at least 10 characters
