@@ -67,6 +67,14 @@ PO.init(
         key: "id",
       },
     },
+    // Reference to Employee creating/needing PO
+    employee_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "employee",
+        key: "id",
+      },
+    },
   },
   {
     // Added timestamp to PO's (default)
