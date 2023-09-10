@@ -3,7 +3,7 @@ const router = require("express").Router();
 const companyRoutes = require("./companyRoutes");
 // const employeeRoutes = require("./employeeRoutes");
 
-const newsRoutes = require("./newsRoutes");
+// const newsRoutes = require("./newsRoutes");
 
 // *** Communication and PO routes on hold for now....
 // const comsRoutes = require("./commentRoutes");
@@ -17,11 +17,10 @@ router.use("/company", companyRoutes);
 // router.use("/employee", employeeRoutes);
 
 //Send all the requests that begin with /api/comments to the newsRoutes.js in the api folder.
-router.use("/news", newsRoutes);
+// router.use("/news", newsRoutes);
 
 // *** Commnunication and PO routes on hold for now....
 // router.use("/coms", comRoutes);
 // router.use("/po", poRoutes);
-
 
 module.exports = router;

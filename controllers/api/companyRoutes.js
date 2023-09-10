@@ -7,47 +7,40 @@ const { Company } = require("../../models");
 router.post("/", async (req, res) => {
   try {
     const companyData = await Company.create(req.body);
-    res
-      .status(200)
-      .json({
-        company: companyData,
-        companyData: "Successfully created company account!",
-      });
+    res.status(200).json({
+      company: companyData,
+      companyData: "Successfully created company account!",
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// VALIDATE: Company ADMIN Login Route
-// router.post("/login", async (req, res) => {
-//   try {
-//     const userData = await User.findOne({ where: { name: req.body.name } });
+// VALIDATE: Company Login Route. Login via Admin and Password.
+router.post("/login", async (req, res) => {
+  try {
+    const companyData = await Company.findOne({
+      where: { admin: req.body.admin },
+    });
+    if (!companyData) {
+      res.status(400).json({
+        message: "Incorrect company username or password. Please try again!",
+      });
+      return;
+    }
 
-//     if (!userData) {
-//       res
-//         .status(400)
-//         .json({ message: "Incorrect email or password. Please try again!" });
-//       return;
-//     }
+    const validPassword = await companyData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({
+        message: "Incorrect company username or password. Please try again!",
+      });
+      return;
+    }
 
-//     const validPassword = await userData.checkPassword(req.body.password);
-
-//     if (!validPassword) {
-//       res
-//         .status(400)
-//         .json({ message: "Incorrect email or password. Please try again!" });
-//       return;
-//     }
-
-//     req.session.save(() => {
-//       req.session.user_id = userData.id;
-//       req.session.user_name = userData.name;
-//       req.session.logged_in = true;
-//       res.json({ user: userData, message: "You are now logged in!" });
-//     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+    res.json({ company: companyData, message: "You are now logged in!" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 module.exports = router;
