@@ -62,6 +62,15 @@ Company.init(
       allowNull: false,
       unique: true, // Only one unique admin can exist for a company
     },
+    // Company Email
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
     password: {
       // Password for Company Administrator.
       type: DataTypes.STRING,
