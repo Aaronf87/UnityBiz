@@ -13,6 +13,11 @@ Communication.init(
       autoIncrement: true,
     },
     content: {
+      // Title of Message
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    content: {
       // Content of Message
       type: DataTypes.TEXT,
       allowNull: false,
