@@ -7,6 +7,7 @@
     "address": "1890 Random St.",
     "zip": 79086,
     "admin": "admin",
+    "email": "unitybiz@gm.com",
     "password": "password12345"
   },
   {
@@ -17,6 +18,7 @@
     "address": "1900 Random St.",
     "zip": 79086,
     "admin": "admin2",
+    "email": "competetor@gm.com",
     "password": "password12345"
   }
 ]

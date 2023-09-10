@@ -60,7 +60,7 @@ Company.init(
       // Administrator for the company that may modify important details.
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, // Only one unique admin can exist for a company
+      unique: true, // Only one unique admin can exist to log into company
     },
     // Company Email
     email: {

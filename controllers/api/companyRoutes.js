@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// VALIDATE: Company Login Route. Login via Admin and Password.
+// VALIDATE COMPANY: Company Login Route. Login via Admin and Password.
 router.post("/login", async (req, res) => {
   try {
     const companyData = await Company.findOne({
