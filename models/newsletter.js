@@ -1,9 +1,16 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-const Newsletter = sequelize.define(
-  "Newsletter",
+class Newsletter extends Model {}
+
+Newsletter.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,16 +20,23 @@ const Newsletter = sequelize.define(
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, // *** We will need a seperate table for "category" to use this
       allowNull: true,
+    },
+    company_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "company",
+        key: "id",
+      },
     },
     employee_id: {
       type: DataTypes.INTEGER,
-      references: {  // Note: It should be 'references' not 'reference'
+      references: {
         model: "employee",
-        key: "id"  // Added this line to complete the foreign key reference
-      }
-    }
+        key: "id", // Added this line to complete the foreign key reference
+      },
+    },
   },
   {
     sequelize,
@@ -33,4 +47,3 @@ const Newsletter = sequelize.define(
 );
 
 module.exports = Newsletter;
-
