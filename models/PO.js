@@ -6,7 +6,7 @@ class PO extends Model {}
 PO.init(
   {
     id: {
-      // Purchase Order ID
+      // Purchase Order Table ID
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -59,6 +59,7 @@ PO.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    // Reference to Company creating/needing PO
     company_id: {
       type: DataTypes.INTEGER,
       references: {
