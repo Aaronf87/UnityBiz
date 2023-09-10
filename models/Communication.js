@@ -14,7 +14,7 @@ Communication.init(
     },
     title: {
       // Title of Message
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     content: {
@@ -44,7 +44,7 @@ Communication.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: "communication",
   }
 );
 

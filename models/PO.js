@@ -41,12 +41,12 @@ PO.init(
     },
     vendor_name: {
       // Vendor name
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     vendor_address: {
       // Vendor address
-      type: DataTypes,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     vendor_city: {
@@ -56,7 +56,7 @@ PO.init(
     },
     vendor_state: {
       // Vendor state
-      type: DataTypes.STRING(35),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     vendor_zip: {
