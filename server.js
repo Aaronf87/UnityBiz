@@ -1,7 +1,3 @@
-const User = require('./models/user');
-const Company = require('./models/company');
-const Newsletter = require('./models/newsletter');
-
 // Import node.js path module provides utilities for working with file and directory paths.
 const path = require("path");
 
@@ -15,9 +11,13 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // Import dotenv environment variables.
 require("dotenv").config();
 
+// Import the custom helper methods
+//*** NO HELPERS YET - WILL CREATE LATER ***
+// const helpers = require("./utils/helpers");
+
 // Import express-handlebars
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ });
 
 // Import the routes.
 const routes = require("./controllers");
@@ -33,7 +33,7 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: process.env.SESSION_PASSWORD,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    maxAge: 1 * 60 * 60 * 1000, // 1 hour
     httpOnly: true,
     secure: false,
     sameSite: "strict",
