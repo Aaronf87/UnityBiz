@@ -26,11 +26,9 @@ router.post("/", async (req, res) => {
     });
 
     if (!companyData) {
-        res
-          .status(400)
-          .json({ message: "Incorrect company id." });
-        return;
-      }
+      res.status(400).json({ message: "Incorrect company id." });
+      return;
+    }
 
     // Replace Company UUID with Company ID in req.body
     for (const key in req.body) {
@@ -41,7 +39,9 @@ router.post("/", async (req, res) => {
     }
 
     // Check if username is taken, message is displayed prompting to choose another username.
-    const validName = await Employee.findOne({ where: { username: req.body.username } });
+    const validName = await Employee.findOne({
+      where: { username: req.body.username },
+    });
     if (validName) {
       res
         .status(400)
@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    // Create new username. 
+    // Create new username.
     const employeeData = await Employee.create(req.body);
     res.status(200).json({
       employee: employeeData,
