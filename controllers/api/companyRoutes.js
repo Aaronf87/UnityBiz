@@ -43,4 +43,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// ***Future : Option to UPDATE Username
+
+// ***Future: Option to DELETE Username
+
 module.exports = router;
