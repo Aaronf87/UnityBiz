@@ -10,7 +10,7 @@ const signupFormHandler = async (event) => {
     const city = document.querySelector("#city").value.trim();
     const state = document.querySelector("#region").value.trim();
     const password = document.querySelector("#password").value.trim();
-    const 
+    const postalCode = document.querySelector("#postal-code").value.trim();
 
 
     
