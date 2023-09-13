@@ -35,7 +35,7 @@ router.put("/:id", async (req, res) => {
       },
     });
     if (!newsData[0]) {
-      res.status(400).json({ message: "No Blog Post found with this ID." });
+      res.status(400).json({ message: "No newsletter found with this ID." });
       return;
     }
     res.status(200).json(newsData);
@@ -53,7 +53,7 @@ router.delete("/:id", async (req, res) => {
       },
     });
     if (!newsData) {
-      res.status(400).json({ message: "No Blog Post found with this ID." });
+      res.status(400).json({ message: "No newsletter found with this ID." });
       return;
     }
     res.status(200).json(newsData);
@@ -62,7 +62,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// *** WE MAY NOT NEED THIS: Get a single newsletter post by ID ***
+// *** Get a single newsletter post by ID ***
 router.get('/:id', async (req, res) => {
   try {
     const newsletter = await Newsletter.findByPk(req.params.id);
