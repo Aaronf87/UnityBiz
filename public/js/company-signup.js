@@ -13,12 +13,11 @@ const signupFormHandler = async (event) => {
     const postalCode = document.querySelector("#postal-code").value.trim();
 
 
-    
-    if (admin && password) {
+    if (admin && companyName && email && phone && address && city && state && password && postalCode) {
         // Send a POST request to the API endpoint
         const response = await fetch("/api/company", {
         method: "POST",
-        body: JSON.stringify({ admin, password }),
+        body: JSON.stringify({ admin, companyName, email, phone, address, city, state, password, postalCode }),
         headers: { "Content-Type": "application/json" },
         });
     
@@ -29,4 +28,4 @@ const signupFormHandler = async (event) => {
         alert(response.statusText);
         }
     }
-    }
+}
