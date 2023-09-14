@@ -13,6 +13,14 @@ router.get("/employee/signup", async (req, res) => {
       res.status(500).json(err);
     }
   });
+router.get("/company/login", async (req, res) => {
+  try {
+    res.render("login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+);
 // ***WILL PASS IN MODELS THAT MATTHEW WILL MAKE
 // const {  } = require("../models");
 
