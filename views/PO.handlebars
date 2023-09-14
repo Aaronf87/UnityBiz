@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="/css/po-form.css" />
+
+{{! Purchase Order Form }}
+<div class="container">
+  <div class="columns-2">
+
+    {{! Letter header with Company Information}}
+    <div class="header">
+      <p class="company-name">Company Name, Inc.</p>
+      <p class="company-details">Phone: (123) 456-7890</p>
+      <p class="company-details">State: California</p>
+      <p class="company-details">City: San Francisco</p>
+      <p class="company-address">Address: 123 Main Street, Suite 456</p>
+      <p class="company-address">Zip Code: 12345</p>
+    </div>
+
+    <h1 class="section-header m-36 text-end po">Purchase Order Form</h1>
+  </div>
+
+  <form action="#" method="post">
+    <div class="columns-2">
+      {{! Vendor Information }}
+      <div>
+        <h3 class="section-header">Vendor Information</h3>
+
+        <div class="form-group">
+          <label for="po-vendor-name">Company Name:</label>
+          <input type="text" id="po-vendor-name" name="vendor-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="po-vendor-address">Address:</label>
+          <input
+            type="text"
+            id="po-vendor-address"
+            name="vendor-address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="po-vendor-city">City:</label>
+          <input type="text" id="po-vendor-city" name="vendor-city" required />
+        </div>
+
+        <div class="form-group">
+          <label for="po-vendor-state">State:</label>
+          <input
+            type="text"
+            id="po-vendor-state"
+            name="vendor-state"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="po-vendor-zipcode">Zip Code:</label>
+          <input
+            type="text"
+            id="po-vendor-zipcode"
+            name="vendor-zipcode"
+            required
+          />
+        </div>
+      </div>
+
+      {{! Purchase Order Information }}
+      <div>
+        <h3 class="section-header">Purchase Order Details</h3>
+
+        <div class="form-group">
+          <label for="po-number">Purchase Order #</label>
+          <input type="text" id="po-number" name="po-number" required />
+        </div>
+
+        <div class="form-group">
+          <label for="invoice-number">Invoice #</label>
+          <input
+            type="text"
+            id="invoice-number"
+            name="invoice-number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="goods">Goods or Service:</label>
+          <input type="text" id="po-goods" name="goods" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cost">Cost</label>
+          <input type="number" id="cost" name="cost" required />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group flex justify-center">
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+</div>

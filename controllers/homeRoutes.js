@@ -1,4 +1,24 @@
 const router = require("express").Router();
+// const { Company, Employee, Newsletter, PO, Communication } = require("../models");
+
+// The `/` endpoint
+
+// HOME: Display all blog posts on homepage.
+router.get("/", async (req, res) => {
+  try {
+    // const postData = await PO.findAll({
+    //   order: [["createdAt", "DESC"]],
+    //   include: [{ model: User, attributes: ["name"] }],
+    // });
+
+    // const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("PO");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/company/signup", async (req, res) => {
   try {
     res.render("company-signup");
@@ -21,9 +41,6 @@ router.get("/company/login", async (req, res) => {
   }
 }
 );
-// ***WILL PASS IN MODELS THAT MATTHEW WILL MAKE
-// const {  } = require("../models");
 
-// The `/` endpoint
 
 module.exports = router;
