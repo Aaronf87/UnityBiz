@@ -3,22 +3,16 @@ const router = require("express").Router();
 
 // The `/` endpoint
 
-// HOME: Display all blog posts on homepage.
+// HOME: Display the landing page.
 router.get("/", async (req, res) => {
   try {
-    // const postData = await PO.findAll({
-    //   order: [["createdAt", "DESC"]],
-    //   include: [{ model: User, attributes: ["name"] }],
-    // });
-
-    // const posts = postData.map((post) => post.get({ plain: true }));
-
-    res.render("PO");
+    res.render("landing");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+// Company Sign-Up: Display the company sign-up page.
 router.get("/company/signup", async (req, res) => {
   try {
     res.render("company-signup");
@@ -26,21 +20,32 @@ router.get("/company/signup", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// Employee Sign-Up: Display the employee sign-up page.
 router.get("/employee/signup", async (req, res) => {
-    try {
-      res.render("employee-signup");
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-router.get("/company/login", async (req, res) => {
   try {
-    res.render("login");
+    res.render("employee-signup");
   } catch (err) {
     res.status(500).json(err);
   }
-}
-);
+});
 
+// Company Login: Display the company login page.
+router.get("/company/login", async (req, res) => {
+  try {
+    res.render("company-login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Employee Login: Display the employee login page.
+router.get("/employee/login", async (req, res) => {
+  try {
+    res.render("employee-login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
