@@ -42,7 +42,6 @@ const signupFormHandler = async (event) => {
 
     if (response.ok) {
       const companyData = await response.json();
-      console.log(companyData.company.company_id);
 
       // Alert the user what their company ID is
       alert(

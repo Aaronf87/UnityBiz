@@ -42,10 +42,20 @@ router.post("/", async (req, res) => {
     const validName = await Employee.findOne({
       where: { username: req.body.username },
     });
+
     if (validName) {
       res
         .status(400)
         .json({ message: "Username is taken. Choose another username." });
+      return;
+    }
+
+    // Validates hashed password.
+    const validPassword = await companyData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
 
