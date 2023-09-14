@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const { Company, Employee, Newsletter, PO, Communication } = require("../models");
+const { Newsletter } = require("../models");
 
 // The `/` endpoint
 
@@ -51,7 +51,22 @@ router.get("/employee/login", async (req, res) => {
 // HOME: Display the newsletters and navbar
 router.get("/home", async (req, res) => {
   try {
-    res.render("home");
+    const newsData = await Newsletter.findAll({
+      order: [["createdAt", "DESC"]],
+      include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
+    });
+
+    const newsletters = newsData.map((newsletter) => newsletter.get({ plain: true }));
+
+    res.render("home", { 
+      newsletters,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+      company_id: req.session.company_id,
+      first_name: req.session.first_name,
+      last_name: req.session.last_name,
+    });
+    
   } catch (err) {
     res.status(500).json(err);
   }

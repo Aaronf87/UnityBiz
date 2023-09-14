@@ -50,8 +50,6 @@ const signupFormHandler = async (event) => {
         const employeeData = await response.json();
         console.log("Response Data:", employeeData); // Log response data
   
-        console.log("Employee ID:", employeeData.employee.employee_id); // Log Employee ID
-  
         // Alert the user what their Employee ID is
         alert(
           `Employee Successfully Created!\n 
