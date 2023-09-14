@@ -3,7 +3,7 @@ const router = require("express").Router();
 
 // The `/` endpoint
 
-// HOME: Display the landing page.
+// LANDING PAGE: Display the landing page.
 router.get("/", async (req, res) => {
   try {
     res.render("landing");
@@ -43,6 +43,15 @@ router.get("/company/login", async (req, res) => {
 router.get("/employee/login", async (req, res) => {
   try {
     res.render("employee-login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// HOME: Display the newsletters and navbar
+router.get("/home", async (req, res) => {
+  try {
+    res.render("home");
   } catch (err) {
     res.status(500).json(err);
   }

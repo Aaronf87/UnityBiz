@@ -40,8 +40,8 @@ const signupFormHandler = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
 
+    const companyData = await response.json();
     if (response.ok) {
-      const companyData = await response.json();
 
       // Alert the user what their company ID is
       alert(
@@ -51,9 +51,9 @@ const signupFormHandler = async (event) => {
       );
 
       // If successful, redirect the browser to the company page
-      document.location.replace("/");
+      document.location.replace("/home");
     } else {
-      alert(response.statusText);
+      alert(`${companyData.message}`);
     }
   }
 };
