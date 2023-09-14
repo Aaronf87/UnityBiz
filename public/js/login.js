@@ -14,11 +14,11 @@ signIn.addEventListener('click', (e) => {
     const passwordVal = password.value;
     // create object to send to server
     const loginData = {
-        email: emailVal,
-        password: passwordVal
+        email: username,
+        password: password,
     };
     // create fetch request to server
-    fetch('./api/employee/login', {
+    fetch('/api/employee/login', {
         method: 'POST',
         body: JSON.stringify(loginData),
         headers: { 'Content-Type': 'application/json' },
@@ -26,7 +26,7 @@ signIn.addEventListener('click', (e) => {
         .then((response) => {
             if (response.ok) {
                 console.log('success');
-                document.location.replace('/dashboard');
+                document.location.replace('/home');
             } else {
                 alert('Failed to log in');
             }
