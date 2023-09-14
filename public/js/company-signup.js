@@ -41,10 +41,18 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      const companyData = await response.json();
+      console.log(companyData.company.company_id);
+
+      // Alert the user what their company ID is
+      alert(
+        `Company Successfully Created!\n 
+        Save this Company ID somewhere safe!\n 
+        Your Company ID is: ${companyData.company.company_id}`
+      );
+
       // If successful, redirect the browser to the company page
-    //   console.log(response);
-      console.log(response.json());
-      //   document.location.replace("/company");
+      document.location.replace("/");
     } else {
       alert(response.statusText);
     }
@@ -52,6 +60,4 @@ const signupFormHandler = async (event) => {
 };
 
 // Sign-Up Button
-document
-  .querySelector("#signUp")
-  .addEventListener("click", signupFormHandler);
+document.querySelector("#signUp").addEventListener("click", signupFormHandler);
