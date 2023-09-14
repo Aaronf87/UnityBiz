@@ -50,15 +50,6 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    // Validates hashed password.
-    const validPassword = await companyData.checkPassword(req.body.password);
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password. Please try again!" });
-      return;
-    }
-
     // Create new username.
     const employeeData = await Employee.create(req.body);
     res.status(200).json({
