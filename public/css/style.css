@@ -1,0 +1,31 @@
+/* Basic styling for the sidebar / */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  padding-top: 20px;
+}
+
+/* / Style for the links in the sidebar / */
+.sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+/* / Change link color on hover / */
+.sidebar a:hover {
+  background-color: #555;
+}
+
+/* / Content container / */
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}

@@ -42,6 +42,7 @@ router.post("/", async (req, res) => {
     const validName = await Employee.findOne({
       where: { username: req.body.username },
     });
+
     if (validName) {
       res
         .status(400)
@@ -51,9 +52,17 @@ router.post("/", async (req, res) => {
 
     // Create new username.
     const employeeData = await Employee.create(req.body);
-    res.status(200).json({
-      employee: employeeData,
-      message: "Successfully created account!",
+
+    req.session.save(() => {
+      req.session.user_id = employeeData.id;
+      req.session.company_id = employeeData.company_id;
+      req.session.first_name = employeeData.first_name;
+      req.session.last_name = employeeData.last_name;
+      req.session.logged_in = true;
+      res.status(200).json({
+        employee: employeeData,
+        message: "Successfully created account!",
+      });
     });
   } catch (err) {
     res.status(400).json(err);
@@ -81,7 +90,18 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    res.json({ employee: employeeData, message: "You are now logged in!" });
+    req.session.save(() => {
+      req.session.user_id = employeeData.id;
+      req.session.company_id = employeeData.company_id;
+      req.session.first_name = employeeData.first_name;
+      req.session.last_name = employeeData.last_name;
+      req.session.logged_in = true;
+      res.status(200).json({
+        eemployee: employeeData,
+        message: "You are now logged in!",
+      });
+    });
+
   } catch (err) {
     res.status(400).json(err);
   }

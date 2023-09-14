@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const { PO, Employee } = require("../../models");
+const withAuth = require("../../util/auth");
 
 // The `/api/po` endpoint
 
 // GET all PO's
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const poData = await PO.findAll({
       order: [["createdAt", "DESC"]],
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // CREATE: a new PO
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const poData = await PO.create(req.body);
     res.status(201).json(poData);
@@ -27,7 +28,7 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATES: an existing PO using its `id`.
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const poData = await PO.update(req.body, {
       where: {
@@ -45,7 +46,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // // DELETE: an existing PO using its `id`.
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const poData = await PO.destroy({
       where: {

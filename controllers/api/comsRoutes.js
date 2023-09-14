@@ -1,11 +1,12 @@
-const express = require("express");
+const express = require('express');  // <-- Make sure this line is here
 const router = express.Router();
 const { Communication, Employee } = require("../../models");
+const withAuth = require("../../util/auth");
 
 // The `/api/coms` endpoint
 
 // GET all communications
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const comsData = await Communication.findAll({
       include: [
@@ -29,7 +30,7 @@ router.get("/", async (req, res) => {
 });
 
 // *** GET a single communication by ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const comsData = await Communication.findByPk(id);
@@ -44,7 +45,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE: a new communication
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const comsData = await Communication.create(req.body);
     res.status(201).json(comsData);
@@ -55,7 +56,7 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATES: a communication by ID
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const [updatedRowsCount] = await Communication.update(req.body, {
@@ -72,7 +73,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE: a communication by ID
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const deletedRowCount = await Communication.destroy({ where: { id } });
