@@ -53,12 +53,35 @@ function addNewsletterToDOM(newsletter) {
 }
 
 // Function to delete a newsletter by its ID
-function deleteNewsletter(id) {
-  const newsletterCard = document.getElementById(`card-${id}`);
-  if (newsletterCard) {
-    newsletterCard.remove();
+async function deleteNewsletter(id) {
+  try {
+    // Sending a DELETE request to the server to delete the newsletter from the database
+    const response = await fetch(`/api/news/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      // Remove the newsletter card from the DOM
+      const newsletterCard = document.getElementById(`card-${id}`);
+      if (newsletterCard) {
+        newsletterCard.remove();
+      }
+
+      // Remove the option from the delete dropdown
+      const deleteDropdown = document.getElementById("deleteDropdown");
+      const selectedOption = deleteDropdown.querySelector(`option[value="${id}"]`);
+      if (selectedOption) {
+        selectedOption.remove();
+      }
+    } else {
+      const errorData = await response.json();
+      console.error('Error deleting newsletter:', errorData);
+    }
+  } catch (err) {
+    console.error('Network error:', err);
   }
 }
+
 
   // Function to create a newsletter
   async function createNewsletter(title, content, image) {
