@@ -1,0 +1,55 @@
+/* CSS styles for the Purchase Orders list */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(to bottom right, #474d4acb, #000000af);
+  font-variant: small-caps;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.container h1 {
+  margin: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.container li {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container li:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.container .po-number {
+  font-weight: bold;
+}
+
+.container .po-date {
+  color: #777;
+}

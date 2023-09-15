@@ -4,17 +4,17 @@ const { Employee, Company } = require("../../models");
 // The `/api/employee` endpoint
 
 // ***TEST ROUTE WILL BE DELETED: Get all employees
-router.get("/", async (req, res) => {
-  try {
-    const employeeData = await Employee.findAll({
-      include: [{ model: Company, attributes: ["company_id"] }],
-    });
+// router.get("/", async (req, res) => {
+//   try {
+//     const employeeData = await Employee.findAll({
+//       include: [{ model: Company, attributes: ["company_id"] }],
+//     });
 
-    res.status(200).json({ employee: employeeData });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.status(200).json({ employee: employeeData });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // CREATE EMPLOYEE: Employee Sign-Up Route
 router.post("/", async (req, res) => {

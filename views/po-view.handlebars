@@ -1,0 +1,21 @@
+{{> sidebar}}
+
+<link rel="stylesheet" href="/css/po-view.css" />
+
+<header>
+  <h1>Purchase Orders</h1>
+</header>
+<div class="container">
+  <ul>
+    {{#each pos as |po|}}
+    <li clas="po-list" data-id="{{po.id}}">
+      <span class="po-number">PO# {{po.po_number}}</span>
+      <br />
+      <span class="po-date">Date: {{po.createdAt}}</span>
+      <p>Service: {{po.goods}}</p>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
+<script src="/js/poView.js"></script>

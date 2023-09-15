@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Newsletter, Employee } = require("../models");
+const { Company, Employee, Newsletter, PO } = require("../models");
 
 // The `/` endpoint
 
@@ -57,19 +57,74 @@ router.get("/home", async (req, res) => {
       include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
     });
 
-    const newsletters = newsData.map((newsletter) => newsletter.get({ plain: true }));
+    const newsletters = newsData.map((newsletter) =>
+      newsletter.get({ plain: true })
+    );
 
     // *** DELETE THIS CONSOLE.LOG
-    console.log(newsletters)
+    console.log(newsletters);
 
-    res.render("home", { newsletters,
+    res.render("home", {
+      newsletters,
       logged_in: req.session.logged_in,
       company_id: req.session.company_id,
       user_id: req.session.user_id,
       first_name: req.session.first_name,
       last_name: req.session.last_name,
-     });
-    
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/po", async (req, res) => {
+  try {
+    const companyData = await Company.findOne({
+      where: { id: req.session.company_id },
+      attributes: ["name", "phone", "state", "city", "address", "zip"],
+    });
+
+    const company = companyData.get({ plain: true });
+
+    // *** DELETE THIS CONSOLE.LOG
+    console.log(company)
+
+    res.render("po", {
+      company,
+      logged_in: req.session.logged_in,
+      company_id: req.session.company_id,
+      user_id: req.session.user_id,
+      first_name: req.session.first_name,
+      last_name: req.session.last_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/po/view", async (req, res) => {
+  try {
+    const poData = await PO.findAll({
+      where: { company_id: req.session.company_id },
+      order: [["createdAt", "DESC"]],
+      include: [{ model: Employee, attributes: ["first_name", "last_name"] }], 
+    });
+
+    const pos = poData.map((singlePO) =>
+    singlePO.get({ plain: true })
+    );
+
+    // *** DELETE THIS CONSOLE.LOG
+    console.log(pos);
+
+    res.render("po-view", {
+      pos,
+      logged_in: req.session.logged_in,
+      company_id: req.session.company_id,
+      user_id: req.session.user_id,
+      first_name: req.session.first_name,
+      last_name: req.session.last_name,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
