@@ -1,9 +1,9 @@
 // Import models
-const Company = require("./Company");
-const Employee = require("./Employee");
-const Newsletter = require("./Newsletter");
-const PO = require("./PO");
-const Communication = require("./Communication");
+const Company = require("./Company.js");
+const Employee = require("./Employee.js");
+const Newsletter = require("./Newsletter.js");
+const PO = require("./PO.js");
+const Communication = require("./Communication.js");
 
 // <===== Company Relationships =====>
 
