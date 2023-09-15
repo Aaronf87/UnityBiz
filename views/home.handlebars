@@ -43,9 +43,23 @@
             <h1 class="text-3xl font-bold">Main Content</h1>
             <p class="mt-2">This is the main content of your page.</p>
         </div>
-        <!-- Newsletters Container -->
+                <!-- Newsletters Container -->
         <div id="newsletters" class="mt-6 overflow-y-auto" style="max-height: calc(100vh - 120px);">
-            <!-- Dynamic newsletters will be inserted here -->
+            {{#each newsletters}}
+            <div class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
+                <img class="rounded-t-lg object-cover h-64 w-full" src="{{this.image}}" alt="" />
+                <div class="p-6">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">{{this.title}}</h5>
+                    <div id="content-{{@index}}" class="hidden text-base text-neutral-600">{{this.content}}</div>
+                    <button onclick="toggleContent({{@index}})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                        Show/Hide
+                    </button>
+                </div>
+                <div class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center">
+                    <small>Created by: {{this.Employee.first_name}} {{this.Employee.last_name}}</small>
+                </div>
+            </div>
+            {{/each}}
         </div>
     </div>
 
@@ -84,18 +98,8 @@
         // Fetch and display newsletters
         async function fetchNewsletters() {
             // Dummy newsletters data
-            const newsletters = [
-                {
-                    title: "Newsletter 1",
-                    content: "This is newsletter 1 content.",
-                    image: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
-                },
-                {
-                    title: "Newsletter 2",
-                    content: "This is newsletter 2 content.",
-                    image: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
-                },
-            ];
+            const newsletters = [];
+            
             const newsletterDiv = document.getElementById("newsletters");
             newsletters.forEach((newsletter, index) => {
                 // HTML for each newsletter card
