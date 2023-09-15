@@ -16,8 +16,8 @@ function hideModal() {
 // Function to update DOM with new newsletter
 function addNewsletterToDOM(newsletter) {
   const newsletterDiv = document.getElementById('newsletters');
-  const card = `
-      <div id="card-${newsletter.id}" class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
+    const card = `
+      <div id="card-${newsletter.id}" class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full mx-2">
           <img class="rounded-t-lg object-cover h-64 w-full" src="${newsletter.image}" alt="" />
           <div class="p-6">
               <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">${newsletter.title}</h5>
@@ -31,6 +31,7 @@ function addNewsletterToDOM(newsletter) {
           </div>
       </div>
   `;
+
   newsletterDiv.innerHTML += card;
 
   // Update the delete dropdown
