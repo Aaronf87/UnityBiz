@@ -1,73 +1,89 @@
-const express = require('express');
+const express = require('express');  // <-- Make sure this line is here
 const router = express.Router();
-const { Communication } = require('../../models');
+const { Communication, Employee } = require("../../models");
+const withAuth = require("../../util/auth");
 
-// Create a new communication
-router.post('/', async (req, res) => {
+// The `/api/coms` endpoint
+
+// GET all communications
+router.get("/", withAuth, async (req, res) => {
   try {
-    const newCommunication = await Communication.create(req.body);
-    res.status(201).json(newCommunication);
+    const comsData = await Communication.findAll({
+      include: [
+        {
+          model: Employee,
+          as: "creator",
+          attributes: ["id", "first_name", "last_name"],
+        },
+        {
+          model: Employee,
+          as: "recipient",
+          attributes: ["id", "first_name", "last_name"],
+        },
+      ],
+    });
+    res.status(200).json(comsData);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-// Get all communications
-router.get('/', async (req, res) => {
-  try {
-    const communications = await Communication.findAll();
-    res.status(200).json(communications);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
-});
-
-// Get a single communication by ID
-router.get('/:id', async (req, res) => {
+// *** GET a single communication by ID
+router.get("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
-    const communication = await Communication.findByPk(id);
-    if (!communication) {
-      return res.status(404).json({ message: 'Communication not found' });
+    const comsData = await Communication.findByPk(id);
+    if (!comsData) {
+      return res.status(404).json({ message: "Communication not found" });
     }
-    res.status(200).json(communication);
+    res.status(200).json(comsData);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-// Update a communication by ID
-router.put('/:id', async (req, res) => {
+// CREATE: a new communication
+router.post("/", withAuth, async (req, res) => {
+  try {
+    const comsData = await Communication.create(req.body);
+    res.status(201).json(comsData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+// UPDATES: a communication by ID
+router.put("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const [updatedRowsCount] = await Communication.update(req.body, {
       where: { id },
     });
     if (updatedRowsCount === 0) {
-      return res.status(404).json({ message: 'Communication not found' });
+      return res.status(404).json({ message: "Communication not found" });
     }
-    res.status(200).json({ message: 'Communication updated successfully' });
+    res.status(200).json({ message: "Communication updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-// Delete a communication by ID
-router.delete('/:id', async (req, res) => {
+// DELETE: a communication by ID
+router.delete("/:id", withAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const deletedRowCount = await Communication.destroy({ where: { id } });
     if (deletedRowCount === 0) {
-      return res.status(404).json({ message: 'Communication not found' });
+      return res.status(404).json({ message: "Communication not found" });
     }
-    res.status(200).json({ message: 'Communication deleted successfully' });
+    res.status(200).json({ message: "Communication deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
 });
 

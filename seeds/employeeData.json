@@ -3,42 +3,42 @@
     "first_name": "Christian",
     "last_name": "Palacios",
     "username": "odinsBird",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 1
   },
   {
     "first_name": "Aaron",
     "last_name": "Flores",
     "username": "badBoy",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 1
   },
   {
     "first_name": "Denise",
     "last_name": "Holgersen",
     "username": "anime-for-life",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 1
   },
   {
     "first_name": "Matt",
     "last_name": "Montano",
     "username": "AI-Master",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 1
   },
   {
     "first_name": "Ragnar",
     "last_name": "Lothbrok",
     "username": "weRAID",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 2
   },
   {
     "first_name": "Chris",
     "last_name": "Harms",
     "username": "lordofthelost",
-    "password": "password12345",
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O",
     "company_id": 2
   }
 ]

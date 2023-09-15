@@ -26,11 +26,9 @@ router.post("/", async (req, res) => {
     });
 
     if (!companyData) {
-        res
-          .status(400)
-          .json({ message: "Incorrect company id." });
-        return;
-      }
+      res.status(400).json({ message: "Incorrect company id." });
+      return;
+    }
 
     // Replace Company UUID with Company ID in req.body
     for (const key in req.body) {
@@ -41,7 +39,10 @@ router.post("/", async (req, res) => {
     }
 
     // Check if username is taken, message is displayed prompting to choose another username.
-    const validName = await Employee.findOne({ where: { username: req.body.username } });
+    const validName = await Employee.findOne({
+      where: { username: req.body.username },
+    });
+
     if (validName) {
       res
         .status(400)
@@ -49,11 +50,19 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    // Create new username. 
+    // Create new username.
     const employeeData = await Employee.create(req.body);
-    res.status(200).json({
-      employee: employeeData,
-      message: "Successfully created account!",
+
+    req.session.save(() => {
+      req.session.user_id = employeeData.id;
+      req.session.company_id = employeeData.company_id;
+      req.session.first_name = employeeData.first_name;
+      req.session.last_name = employeeData.last_name;
+      req.session.logged_in = true;
+      res.status(200).json({
+        employee: employeeData,
+        message: "Successfully created account!",
+      });
     });
   } catch (err) {
     res.status(400).json(err);
@@ -81,7 +90,18 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    res.json({ employee: employeeData, message: "You are now logged in!" });
+    req.session.save(() => {
+      req.session.user_id = employeeData.id;
+      req.session.company_id = employeeData.company_id;
+      req.session.first_name = employeeData.first_name;
+      req.session.last_name = employeeData.last_name;
+      req.session.logged_in = true;
+      res.status(200).json({
+        eemployee: employeeData,
+        message: "You are now logged in!",
+      });
+    });
+
   } catch (err) {
     res.status(400).json(err);
   }

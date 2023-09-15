@@ -1,23 +1,24 @@
 const router = require('express').Router();
 const { Newsletter, Employee } = require('../../models');
+const withAuth = require("../../util/auth");
 
 // The `/api/news` endpoint
 
 // GET all newsletter posts
-router.get('/', async (req, res) => {
-  try {
-    const newsData = await Newsletter.findAll({
-      order: [["createdAt", "DESC"]],
-      include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
-    });
-    res.status(200).json(newsData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get('/', withAuth, async (req, res) => {
+//   try {
+//     const newsData = await Newsletter.findAll({
+//       order: [["createdAt", "DESC"]],
+//       include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
+//     });
+//     res.status(200).json(newsData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // CREATE: a new newsletter post
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const newsData = await Newsletter.create(req.body);
     res.status(201).json(newsData);
@@ -27,7 +28,7 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATES: an existing newsletter using its `id`.
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const newsData = await Newsletter.update(req.body, {
       where: {
@@ -35,7 +36,7 @@ router.put("/:id", async (req, res) => {
       },
     });
     if (!newsData[0]) {
-      res.status(400).json({ message: "No Blog Post found with this ID." });
+      res.status(400).json({ message: "No newsletter found with this ID." });
       return;
     }
     res.status(200).json(newsData);
@@ -45,7 +46,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE: an existing newsletter using its `id`.
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const newsData = await Newsletter.destroy({
       where: {
@@ -53,7 +54,7 @@ router.delete("/:id", async (req, res) => {
       },
     });
     if (!newsData) {
-      res.status(400).json({ message: "No Blog Post found with this ID." });
+      res.status(400).json({ message: "No newsletter found with this ID." });
       return;
     }
     res.status(200).json(newsData);
@@ -62,8 +63,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// *** WE MAY NOT NEED THIS: Get a single newsletter post by ID ***
-router.get('/:id', async (req, res) => {
+// *** Get a single newsletter post by ID ***
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const newsletter = await Newsletter.findByPk(req.params.id);
     if (!newsletter) {

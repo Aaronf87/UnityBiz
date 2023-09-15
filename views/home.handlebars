@@ -1,0 +1,169 @@
+{{> sidebar}}
+
+<!-- Main Container -->
+<div class="flex h-screen bg-gray-100">
+    <!-- Sidebar Section -->
+    <div
+        class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in">
+        <a href="#" class="text-white text-2xl font-extrabold">UnityBiz</a>
+        <nav class="flex flex-col">
+            <!-- Navigation Links -->
+            <a href="#" class="px-3 py-2 hover:bg-gray-700">Home</a>
+            <a href="#" class="px-3 py-2 hover:bg-gray-700">About</a>
+            <a href="#" class="px-3 py-2 hover:bg-gray-700">Services</a>
+            <a href="#" class="px-3 py-2 hover:bg-gray-700">Portfolio</a>
+            <a href="#" class="px-3 py-2 hover:bg-gray-700">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="content ml-64 p-6 flex flex-col h-full">
+        <!-- Action Buttons Container -->
+        <div class="flex justify-end">
+            <!-- Action Buttons: Create, Update, Delete -->
+            <button id="createButton"
+                class="ripple bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
+                Create
+            </button>
+
+            <button class="ripple bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2">
+                Update
+            </button>
+            <button id="showDeleteDropdown"
+                class="ripple bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                Delete
+            </button>
+            <select id="deleteDropdown" class="hidden">
+                <!-- Options will be populated dynamically -->
+            </select>
+            <button id="confirmDelete"
+                class="hidden ripple bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                Confirm Delete
+            </button>
+        </div>
+        <!-- Header and Description -->
+        <div>
+            <h1 class="text-3xl font-bold">Main Content</h1>
+            <p class="mt-2">This is the main content of your page.</p>
+        </div>
+        <!-- Newsletters Container -->
+        <div id="newsletters" class="mt-6 sm:flex sm:justify-center">
+            <!-- Dynamic newsletters will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Create Newsletter Modal -->
+    <div id="createModal"
+        class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg w-1/2">
+            <div class="flex flex-col items-start p-4">
+                <div class="flex items-center w-full">
+                    <h2 class="text-lg font-semibold">Create Newsletter</h2>
+                    <button
+                        class="ml-auto text-white bg-red-500 border-0 py-1 px-2 focus:outline-none hover:bg-red-600 rounded"
+                        id="closeCreateModal">Close</button>
+                </div>
+                <div class="w-full mt-4">
+                    <input type="text" id="titleInput" placeholder="Title" class="w-full rounded border">
+                    <textarea id="contentInput" placeholder="Content" rows="4"
+                        class="w-full rounded border mt-2"></textarea>
+                    <input type="text" id="imageInput" placeholder="Image URL" class="w-full rounded border mt-2">
+                </div>
+                <button class="mt-4 bg-blue-500 text-white py-1 px-4 rounded" id="submitCreate">Submit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript Section -->
+    <script>
+        // Toggle content visibility
+        function toggleContent(index) {
+            const contentDiv = document.getElementById(`content-${index}`);
+            contentDiv.classList.toggle("hidden");
+        }
+
+        // Fetch and display newsletters
+        async function fetchNewsletters() {
+            // Dummy newsletters data
+            const newsletters = [
+                {
+                    title: "Newsletter 1",
+                    content: "This is newsletter 1 content.",
+                    image: "https://tecdn.b-cdn.net/img/new/standard/city/041.webp",
+                },
+                {
+                    title: "Newsletter 2",
+                    content: "This is newsletter 2 content.",
+                    image: "https://tecdn.b-cdn.net/img/new/standard/city/042.webp",
+                },
+            ];
+            const newsletterDiv = document.getElementById("newsletters");
+            newsletters.forEach((newsletter, index) => {
+                // HTML for each newsletter card
+                const card = `
+                        <div class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
+                            <img class="rounded-t-lg object-cover h-64 w-full" src="${newsletter.image}" alt="" />
+                            <div class="p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">${newsletter.title}</h5>
+                                <div id="content-${index}" class="hidden text-base text-neutral-600">${newsletter.content}</div>
+                                <button onclick="toggleContent(${index})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                    Show/Hide
+                                </button>
+                            </div>
+                            <div class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center">
+                                <small>Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    `;
+                newsletterDiv.innerHTML += card;
+            });
+        }
+
+        // Initialize newsletters on page load
+        window.addEventListener("load", fetchNewsletters);
+
+        // Ripple effect for buttons
+        document.addEventListener("click", function (e) {
+            if (!e.target.classList.contains("ripple")) return;
+
+            let ripple = document.createElement("span");
+            let rect = e.target.getBoundingClientRect();
+            let size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+            ripple.classList.add("animate-ripple");
+
+            e.target.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    </script>
+
+    <!-- Custom Styles for Ripple Effect -->
+    <style>
+        .animate-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+
+    <script src="/js/newsletter.js"></script>

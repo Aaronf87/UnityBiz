@@ -8,7 +8,7 @@
     "zip": 79086,
     "admin": "admin",
     "email": "unitybiz@gm.com",
-    "password": "password12345"
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O"
   },
   {
     "name": "CompetetorBiz",
@@ -19,6 +19,6 @@
     "zip": 79086,
     "admin": "admin2",
     "email": "competetor@gm.com",
-    "password": "password12345"
+    "password": "$2b$10$m/mhLY6wh8HG6AidTgjNjOLW/z5vKqDeFBTEabxSanBYjec5ArA3O"
   }
 ]
