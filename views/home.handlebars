@@ -4,7 +4,8 @@
 <div class="flex h-screen bg-gray-100">
     <!-- Sidebar Section -->
     <div
-        class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in">
+        class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in sticky"
+        style="top: 0;">
         <a href="#" class="text-white text-2xl font-extrabold">UnityBiz</a>
         <nav class="flex flex-col">
             <!-- Navigation Links -->
@@ -25,10 +26,6 @@
                 class="ripple bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
                 Create
             </button>
-
-            <button class="ripple bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2">
-                Update
-            </button>
             <button id="showDeleteDropdown"
                 class="ripple bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
                 Delete
@@ -47,7 +44,7 @@
             <p class="mt-2">This is the main content of your page.</p>
         </div>
         <!-- Newsletters Container -->
-        <div id="newsletters" class="mt-6 sm:flex sm:justify-center">
+        <div id="newsletters" class="mt-6 overflow-y-auto" style="max-height: calc(100vh - 120px);">
             <!-- Dynamic newsletters will be inserted here -->
         </div>
     </div>
@@ -73,6 +70,7 @@
             </div>
         </div>
     </div>
+
 
 
     <!-- JavaScript Section -->

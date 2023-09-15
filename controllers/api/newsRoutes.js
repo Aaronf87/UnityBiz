@@ -5,17 +5,17 @@ const withAuth = require("../../util/auth");
 // The `/api/news` endpoint
 
 // GET all newsletter posts
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     const newsData = await Newsletter.findAll({
-//       order: [["createdAt", "DESC"]],
-//       include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
-//     });
-//     res.status(200).json(newsData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const newsData = await Newsletter.findAll({
+      order: [["createdAt", "DESC"]],
+      include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
+    });
+    res.status(200).json(newsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // CREATE: a new newsletter post
 router.post('/', withAuth, async (req, res) => {
