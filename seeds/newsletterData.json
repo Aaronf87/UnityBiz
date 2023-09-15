@@ -26,5 +26,19 @@
     "category": "Security",
     "company_id": 1,
     "employee_id": 4
+  },
+  {
+    "title": "Company 5k Run",
+    "content": "Our company is hosting a 5k run. We would like all the support we can get. Feel free to join and have some fun!",
+    "category": "Fun",
+    "company_id": 2,
+    "employee_id": 3
+  },
+  {
+    "title": "Security: Do not click on links from untrusted email addresses",
+    "content": "Make sure to report all suspicious email addresses to IT",
+    "category": "Security",
+    "company_id": 2,
+    "employee_id": 4
   }
 ]
