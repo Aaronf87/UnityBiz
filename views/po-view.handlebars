@@ -6,14 +6,19 @@
   <h1>Purchase Orders</h1>
 </header>
 <div class="container">
-  <ul>
+  <ul class="po-list">
     {{#each pos as |po|}}
-    <li clas="po-list" data-id="{{po.id}}">
-      <span class="po-number">PO# {{po.po_number}}</span>
-      <br />
-      <span class="po-date">Date: {{po.createdAt}}</span>
-      <p>Service: {{po.goods}}</p>
-    </li>
+      <li class="po column-3 flex justify-between" data-id="{{po.id}}">
+        <div>
+          <span class="po-number">PO# {{po.po_number}}</span>
+          <br />
+          <span class="po-date">Date: {{po.createdAt}}</span>
+          <p>Service: {{po.goods}}</p>
+        </div>
+        <div>
+          <i class="pdf mt-3 fa-solid fa-file-pdf fa-2xl" style="color: #711dd7;"></i>
+        </div>
+      </li>
     {{/each}}
   </ul>
 </div>
