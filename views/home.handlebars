@@ -1,58 +1,43 @@
 {{> sidebar}}
 
-<!-- Main Container -->
-<div class="flex h-screen bg-gray-100">
-    <!-- Sidebar Section -->
-    <div
-        class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in sticky"
-        style="top: 0;">
-        <a href="#" class="text-white text-2xl font-extrabold">UnityBiz</a>
-        <nav class="flex flex-col">
-            <!-- Navigation Links -->
-            <a href="#" class="px-3 py-2 hover:bg-gray-700">Home</a>
-            <a href="#" class="px-3 py-2 hover:bg-gray-700">About</a>
-            <a href="#" class="px-3 py-2 hover:bg-gray-700">Services</a>
-            <a href="#" class="px-3 py-2 hover:bg-gray-700">Portfolio</a>
-            <a href="#" class="px-3 py-2 hover:bg-gray-700">Contact</a>
-        </nav>
-    </div>
-
+<link rel="stylesheet" type="text/css" href="../public/css/style.css">
     <!-- Main Content Section -->
-    <div class="content ml-64 p-6 flex flex-col h-full">
+    <div class="content ml-64 p-6 flex flex-col h-full bg-gray-100">
         <!-- Action Buttons Container -->
-        <div class="flex justify-end">
-            <!-- Action Buttons: Create, Update, Delete -->
+        <div class="flex justify-end mb-4">
             <button id="createButton"
-                class="ripple bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
+                class="ripple bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                 Create
             </button>
             <button id="showDeleteDropdown"
-                class="ripple bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
-                Delete
+                {{!-- class="ripple bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"> //do not touch this line is weird af
+                Delete --}}
             </button>
-            <select id="deleteDropdown" class="hidden">
-                <!-- Options will be populated dynamically -->
-            </select>
+            <select id="deleteDropdown" class="hidden w-40 rounded border bg-white text-black p-2 ml-2" style="z-index: 9999; max-height: 200px; overflow-y: auto;"></select>            
             <button id="confirmDelete"
-                class="hidden ripple bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                class="hidden ripple bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
                 Confirm Delete
             </button>
         </div>
         <!-- Header and Description -->
         <div>
-            <h1 class="text-3xl font-bold">Main Content</h1>
-            <p class="mt-2">This is the main content of your page.</p>
+            <h1 class="text-4xl font-extrabold text-gray-900">Newsletters</h1>
+            <p class="mt-2 text-lg text-gray-700">See what the team is up to!🎉</p>
         </div>
                 <!-- Newsletters Container -->
-        <div id="newsletters" data-company="{{company_id}}" data-user="{{user_id}}"class="mt-6 overflow-y-auto" style="max-height: calc(100vh - 120px);">
+                <div id="newsletters" data-company="{{company_id}}" data-user="{{user_id}}" class="mt-6 overflow-y-auto" style="max-height: calc(100vh - 120px);">
             {{#each newsletters as |newsletter|}}
-            <div class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
-                <img class="rounded-t-lg object-cover h-64 w-full" src="{{this.image}}" alt="" />
+            <div id="card-{{newsletter.id}}" class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
+                <img class="rounded-t-lg object-cover h-64 w-full" src="{{newsletter.image}}" alt="" />
                 <div class="p-6">
-                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">{{this.title}}</h5>
-                    <div id="content-{{@index}}" class="hidden text-base text-neutral-600">{{this.content}}</div>
-                    <button onclick="toggleContent({{@index}})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">{{newsletter.title}}</h5>
+                    <div id="content-{{newsletter.id}}" class="hidden text-base text-neutral-600">{{newsletter.content}}</div>
+                    <button onclick="toggleContent({{newsletter.id}})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
                         Show/Hide
+                    </button>
+                    <!-- New Delete button -->
+                    <button id="delete-{{newsletter.id}}" onclick="deleteNewsletter({{newsletter.id}})" class="hidden ripple mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                        Delete
                     </button>
                 </div>
                 <div class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center">
@@ -61,34 +46,33 @@
             </div>
             {{/each}}
         </div>
-    </div>
 
-    <!-- Create Newsletter Modal -->
-    <div id="createModal"
-        class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white rounded-lg w-1/2">
-            <div class="flex flex-col items-start p-4">
-                <div class="flex items-center w-full">
-                    <h2 class="text-lg font-semibold">Create Newsletter</h2>
-                    <button
-                        class="ml-auto text-white bg-red-500 border-0 py-1 px-2 focus:outline-none hover:bg-red-600 rounded"
+        <!-- Create Newsletter Modal -->
+        <div id="createModal"
+            class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="bg-white rounded-lg w-1/2 p-6">
+                <div class="flex items-center w-full mb-4">
+                    <h2 class="text-2xl font-semibold">Create Newsletter</h2>
+                    <button class="ml-auto text-white bg-red-600 hover:bg-red-700 py-2 px-4 rounded-full"
                         id="closeCreateModal">Close</button>
                 </div>
-                <div class="w-full mt-4">
-                    <input type="text" id="titleInput" placeholder="Title" class="w-full rounded border">
+                <div class="w-full">
+                    <input type="text" id="titleInput" placeholder="Title"
+                        class="w-full rounded border p-2 mb-2 bg-gray-50">
                     <textarea id="contentInput" placeholder="Content" rows="4"
-                        class="w-full rounded border mt-2"></textarea>
-                    <input type="text" id="imageInput" placeholder="Image URL" class="w-full rounded border mt-2">
+                        class="w-full rounded border p-2 mb-2 bg-gray-50"></textarea>
+                    <input type="text" id="imageInput" placeholder="Image URL"
+                        class="w-full rounded border p-2 mb-2 bg-gray-50">
                 </div>
-                <button class="mt-4 bg-blue-500 text-white py-1 px-4 rounded" id="submitCreate">Submit</button>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full" id="submitCreate">Submit</button>
             </div>
         </div>
-    </div>
+        </div>
 
 
 
-    <!-- JavaScript Section -->
-    <script>
+        <!-- JavaScript Section -->
+        <script>
         // Toggle content visibility
         function toggleContent(index) {
             const contentDiv = document.getElementById(`content-${index}`);
@@ -103,12 +87,13 @@
             newsletters.forEach((newsletter, index) => {
                 // HTML for each newsletter card
                 const card = `
-                        <div class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full md:w-3/4 lg:w-1/2 mx-2 sm:shrink-0 sm:grow sm:basis-0">
-                            <img class="rounded-t-lg object-cover h-64 w-full" src="${newsletter.image}" alt="" />
-                            <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">${newsletter.title}</h5>
-                                <div id="content-${index}" class="hidden text-base text-neutral-600">${newsletter.content}</div>
-                                <button onclick="toggleContent(${index})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                    <div id="card-${newsletter.id}" class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full mx-2">
+                        <img class="rounded-t-lg object-cover h-64 w-full" src="${imageUrl}" alt="" />
+                        <div class="p-6">
+                             <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">${newsletter.title}</h5>
+                             <div id="content-${newsletter.id}" class="hidden text-base text-neutral-600">${newsletter.content}</div>
+                             <button onclick="toggleContent(${newsletter.id})"
+                                        class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                     Show/Hide
                                 </button>
                             </div>
@@ -142,10 +127,10 @@
                 ripple.remove();
             }, 600);
         });
-    </script>
+        </script>
 
-    <!-- Custom Styles for Ripple Effect -->
-    <style>
+        <!-- Custom Styles for Ripple Effect -->
+        <style>
         .animate-ripple {
             position: absolute;
             border-radius: 50%;
@@ -165,6 +150,6 @@
             position: relative;
             overflow: hidden;
         }
-    </style>
+        </style>
 
-    <script src="/js/newsletter.js"></script>
+        <script src="/js/newsletter.js"></script>
