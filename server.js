@@ -60,6 +60,9 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware pointing to the public directory (absolute path).
 app.use(express.static(path.join(__dirname, "public")));
 
+// app.use(express.static('public'));
+// app.use('/util', express.static('util'));
+
 //Send all the requests that begin with / to the index.js in the routes folder.
 app.use(routes);
 
