@@ -1,5 +1,5 @@
-.bg {
-  background-image: url(../public/assets/00214.png);
+#bg {
+  background-image: url(/public/assets/00214.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
