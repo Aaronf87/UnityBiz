@@ -52,9 +52,7 @@ const signupFormHandler = async (event) => {
   
         // Alert the user what their Employee ID is
         alert(
-          `Employee Successfully Created!\n 
-          Save this Employee ID somewhere safe!\n 
-          Your Employee ID is: ${employeeData.employee.employee_id}`
+          `Login Successfully Created!`
         );
   
         // If successful, redirect the browser to the homepage or any other page

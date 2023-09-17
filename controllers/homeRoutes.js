@@ -87,7 +87,7 @@ router.get("/po", async (req, res) => {
     const company = companyData.get({ plain: true });
 
     // *** DELETE THIS CONSOLE.LOG
-    console.log(company)
+    console.log(company);
 
     res.render("po", {
       company,
@@ -114,15 +114,13 @@ router.get("/po/view", async (req, res) => {
     const poData = await PO.findAll({
       where: { company_id: req.session.company_id },
       order: [["createdAt", "DESC"]],
-      include: [{ model: Employee, attributes: ["first_name", "last_name"] }], 
+      include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
     });
 
-    const pos = poData.map((singlePO) =>
-    singlePO.get({ plain: true })
-    );
+    const pos = poData.map((singlePO) => singlePO.get({ plain: true }));
 
     // *** DELETE THIS CONSOLE.LOG
-    console.log(company)
+    console.log(company);
     console.log(pos);
 
     res.render("po-view", {
@@ -138,12 +136,9 @@ router.get("/po/view", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.get("*", async (req, res) => {
-res.render("404");
-} 
-);
-
-
-
+  res.render("404");
+});
 
 module.exports = router;

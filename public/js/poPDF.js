@@ -1,6 +1,3 @@
-const { jsPDF } = require("jspdf");
-require("jspdf-autotable");
-
 const poPDF = async (
   companyName,
   companyAddress,
@@ -21,7 +18,7 @@ const poPDF = async (
   vendorCost
 ) => {
   // Create a jsPDF instance
-  const doc = new jsPDF();
+  const doc = new window.jspdf.jsPDF();
 
   // Company Name: Top Left Corner
   doc.setFontSize(16);
@@ -182,7 +179,7 @@ const poPDF = async (
   doc.setFontSize(12);
 
   // Save the PDF
-  doc.save("PurchaseOrder.pdf");
+  doc.save(`PO-${poNumber}.pdf`);
 };
 
-module.exports = poPDF;
+export default poPDF;

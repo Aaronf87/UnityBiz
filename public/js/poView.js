@@ -1,4 +1,4 @@
-const poPDF = require("./poPDF");
+import poPDF from "./poPDF.js";
 
 const poListEl = document.querySelector(".po-list");
 // const po = poList.children;
@@ -22,26 +22,6 @@ const renderPDF = async (element) => {
   const vendorGoods = element.dataset.vendorgoods;
   const vendorDescription = element.dataset.vendordescription;
   const vendorCost = element.dataset.vendorcost;
-
-  console.log(
-    companyName,
-    companAddress,
-    companyCity,
-    companyState,
-    companyZip,
-    companyPhone,
-    date,
-    poNumber,
-    vendorInvoice,
-    vendorName,
-    vendorAddress,
-    vendorCity,
-    vendorState,
-    vendorZip,
-    vendorGoods,
-    vendorDescription,
-    vendorCost
-  );
 
   poPDF(
     companyName,
@@ -73,5 +53,3 @@ document.querySelector(".po-list").addEventListener("click", (event) => {
     return;
   }
 });
-
-};

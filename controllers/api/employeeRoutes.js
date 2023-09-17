@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
         break;
       }
     }
-
+    
     // Check if username is taken, message is displayed prompting to choose another username.
     const validName = await Employee.findOne({
       where: { username: req.body.username },
