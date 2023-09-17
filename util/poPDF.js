@@ -1,7 +1,7 @@
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
+const { jsPDF } = require("jspdf");
+require("jspdf-autotable");
 
-export const poPDF = async (
+const poPDF = async (
   companyName,
   companyAddress,
   companyCity,
@@ -185,3 +185,4 @@ export const poPDF = async (
   doc.save("PurchaseOrder.pdf");
 };
 
+module.exports = poPDF;

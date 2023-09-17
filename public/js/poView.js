@@ -1,11 +1,4 @@
-// Load jspdf globally
-const script = document.createElement('script');
-script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-script.type = 'text/javascript';
-document.head.appendChild(script);
-
-script.onload = () => {
-    import { poPDF } from '../../util/poPDF.js';
+const poPDF = require("./poPDF");
 
 const poListEl = document.querySelector(".po-list");
 // const po = poList.children;
