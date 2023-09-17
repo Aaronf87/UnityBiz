@@ -89,7 +89,7 @@ router.get("/po", async (req, res) => {
     // *** DELETE THIS CONSOLE.LOG
     console.log(company);
 
-    res.render("po", {
+    res.render("PO", {
       company,
       logged_in: req.session.logged_in,
       company_id: req.session.company_id,
