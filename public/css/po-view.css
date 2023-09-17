@@ -1,9 +1,15 @@
 /* CSS styles for the Purchase Orders list */
-body {
+/* body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
+} */
+
+.main-container {
+  background-color: #f4f4f4;
+  padding: 20px;
+  margin-left: 300px;
 }
 
 header {

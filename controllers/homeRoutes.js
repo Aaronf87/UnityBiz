@@ -6,7 +6,9 @@ const { Company, Employee, Newsletter, PO } = require("../models");
 // LANDING PAGE: Display the landing page.
 router.get("/", async (req, res) => {
   try {
-    res.render("landing");
+    res.render("landing", {
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -50,6 +52,10 @@ router.get("/employee/login", async (req, res) => {
 
 // HOME: Display the newsletters and navbar
 router.get("/home", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const newsData = await Newsletter.findAll({
       where: { company_id: req.session.company_id },
@@ -60,9 +66,6 @@ router.get("/home", async (req, res) => {
     const newsletters = newsData.map((newsletter) =>
       newsletter.get({ plain: true })
     );
-
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(newsletters);
 
     res.render("home", {
       newsletters,
@@ -77,7 +80,12 @@ router.get("/home", async (req, res) => {
   }
 });
 
+// Create PO: Display the create PO page
 router.get("/po", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const companyData = await Company.findOne({
       where: { id: req.session.company_id },
@@ -85,9 +93,6 @@ router.get("/po", async (req, res) => {
     });
 
     const company = companyData.get({ plain: true });
-
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(company);
 
     res.render("PO", {
       company,
@@ -102,7 +107,12 @@ router.get("/po", async (req, res) => {
   }
 });
 
+// View PO: Display the view PO page
 router.get("/po/view", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const companyData = await Company.findOne({
       where: { id: req.session.company_id },
@@ -119,10 +129,6 @@ router.get("/po/view", async (req, res) => {
 
     const pos = poData.map((singlePO) => singlePO.get({ plain: true }));
 
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(company);
-    console.log(pos);
-
     res.render("po-view", {
       pos,
       company,
@@ -137,6 +143,16 @@ router.get("/po/view", async (req, res) => {
   }
 });
 
+// Redirect: Display the redirect page
+router.get("/redirect", async (req, res) => {
+  try {
+    res.render("redirect");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// 404: Display the 404 page
 router.get("*", async (req, res) => {
   res.render("404");
 });

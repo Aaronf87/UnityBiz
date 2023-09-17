@@ -1,7 +1,9 @@
-const express = require('express');  // <-- Make sure this line is here
+const express = require("express"); 
 const router = express.Router();
 const { Communication, Employee } = require("../../models");
 const withAuth = require("../../util/auth");
+
+// *** FUTURE FEATURE FOR EMPLOYEE MESSAGING: BACKEND READY ***
 
 // The `/api/coms` endpoint
 

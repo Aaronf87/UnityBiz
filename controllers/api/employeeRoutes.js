@@ -3,19 +3,6 @@ const { Employee, Company } = require("../../models");
 
 // The `/api/employee` endpoint
 
-// ***TEST ROUTE WILL BE DELETED: Get all employees
-// router.get("/", async (req, res) => {
-//   try {
-//     const employeeData = await Employee.findAll({
-//       include: [{ model: Company, attributes: ["company_id"] }],
-//     });
-
-//     res.status(200).json({ employee: employeeData });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 // CREATE EMPLOYEE: Employee Sign-Up Route
 router.post("/", async (req, res) => {
   try {
@@ -37,7 +24,7 @@ router.post("/", async (req, res) => {
         break;
       }
     }
-    
+
     // Check if username is taken, message is displayed prompting to choose another username.
     const validName = await Employee.findOne({
       where: { username: req.body.username },
@@ -101,12 +88,20 @@ router.post("/login", async (req, res) => {
         message: "You are now logged in!",
       });
     });
-
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
+router.post("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 // ***Future : Option to UPDATE Username
 
 // ***Future: Option to DELETE Username

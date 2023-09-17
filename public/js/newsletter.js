@@ -23,10 +23,9 @@ function hideModal() {
 
 // Function to update DOM with new newsletter
 function addNewsletterToDOM(newsletter) {
-
-  
   // Provide a default image if 'image' is empty
-  const imageUrl = newsletter.image || 'https://via.placeholder.com/640x360.png?text=No+Image';
+  const imageUrl =
+    newsletter.image || "https://via.placeholder.com/640x360.png?text=No+Image";
 
   const card = `
         <div id="card-${newsletter.id}" class="flex flex-col rounded-lg bg-white shadow-md mt-4 w-full mx-2">
@@ -36,6 +35,9 @@ function addNewsletterToDOM(newsletter) {
                 <div id="content-${newsletter.id}" class="hidden text-base text-neutral-600">${newsletter.content}</div>
                 <button onclick="toggleContent(${newsletter.id})" class="ripple mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
                     Show/Hide
+                </button>
+                <button id="delete-${newsletter.id}" onclick="deleteNewsletter(${newsletter.id})" class="hidden ripple mt-2 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                    Delete
                 </button>
             </div>
             <div class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center">
@@ -59,7 +61,7 @@ async function deleteNewsletter(id) {
   try {
     // Sending a DELETE request to the server to delete the newsletter from the database
     const response = await fetch(`/api/news/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
 
     if (response.ok) {
@@ -71,31 +73,39 @@ async function deleteNewsletter(id) {
 
       // Remove the option from the delete dropdown
       const deleteDropdown = document.getElementById("deleteDropdown");
-      const selectedOption = deleteDropdown.querySelector(`option[value="${id}"]`);
+      const selectedOption = deleteDropdown.querySelector(
+        `option[value="${id}"]`
+      );
       if (selectedOption) {
         selectedOption.remove();
       }
     } else {
       const errorData = await response.json();
-      console.error('Error deleting newsletter:', errorData);
+      console.error("Error deleting newsletter:", errorData);
     }
   } catch (err) {
-    console.error('Network error:', err);
+    console.error("Network error:", err);
   }
 }
+// Function to toggle content visibility
+async function toggleContent(id) {
+  const contentDiv = document.getElementById(`content-${id}`);
+  const deleteButton = document.getElementById(`delete-${id}`); // Get the Delete button
+  contentDiv.classList.toggle("hidden");
+  deleteButton.classList.toggle("hidden"); // Show/Hide the Delete button
+}
 
-
-  // Function to create a newsletter
-  async function createNewsletter(title, content, image) {
+// Function to create a newsletter
+async function createNewsletter(title, content, image) {
   try {
     const company_id = newsletterDiv.dataset.company;
     console.log(company_id);
     const user_id = newsletterDiv.dataset.user;
-    console.log(user_id)
-    const response = await fetch('/api/news', {
-      method: 'POST',
+    console.log(user_id);
+    const response = await fetch("/api/news", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, content, image, company_id, user_id }),
     });
@@ -105,24 +115,34 @@ async function deleteNewsletter(id) {
       return data;
     } else {
       const errorData = await response.json();
-      console.error('Error creating newsletter:', errorData);
+      console.error("Error creating newsletter:", errorData);
       return null;
     }
   } catch (err) {
-    console.error('Network error:', err);
+    console.error("Network error:", err);
     return null;
   }
-  }
+}
 
-  // Function to fetch existing newsletters
-  async function fetchNewsletters() {
+// Function to fetch existing newsletters
+// Function to fetch existing newsletters
+async function fetchNewsletters() {
   try {
-    const companyId = sessionStorage.getItem("company_id");
-    const response = await fetch(`/api/news?companyId=${companyId}`);
+    // Fetching logic here ...
     if (response.ok) {
       const data = await response.json();
       newsletters = data;
       newsletters.forEach(addNewsletterToDOM);
+
+      // Add logic to populate dropdown
+      const deleteDropdown = document.getElementById("deleteDropdown");
+      deleteDropdown.innerHTML = ""; // Clear existing options
+      newsletters.forEach((newsletter) => {
+        const option = document.createElement("option");
+        option.value = newsletter.id;
+        option.text = newsletter.title;
+        deleteDropdown.appendChild(option);
+      });
     } else {
       const errorData = await response.json();
       console.error("Error fetching newsletters:", errorData);
@@ -130,7 +150,7 @@ async function deleteNewsletter(id) {
   } catch (err) {
     console.error("Network error:", err);
   }
-  }
+}
 
 // Wait for the document to load
 document.addEventListener("DOMContentLoaded", () => {

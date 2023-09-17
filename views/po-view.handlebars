@@ -1,58 +1,61 @@
 {{> sidebar}}
 
+{{!-- View PO Page CSS Style --}}
 <link rel="stylesheet" href="/css/po-view.css" />
 
-<header>
-  <h1>Purchase Orders</h1>
-</header>
-<div class="container">
-  <ul
-    class="po-list"
-    data-companyname="{{company.name}}"
-    data-companyaddress="{{company.address}}"
-    data-companycity="{{company.city}}"
-    data-companystate="{{company.state}}"
-    data-companyzip="{{company.zip}}"
-    data-companyphone="{{company.phone}}"
-  >
-    {{#each pos as |po|}}
-      <li class="po column-3 flex justify-between" data-id="{{po.id}}">
-        <div>
-          <span class="po-number">PO# {{po.po_number}}</span>
-          <br />
-          <span class="po-date">Date: {{po.createdAt}}</span>
-          <p>Service: {{po.goods}}</p>
-        </div>
-        <div>
-          <i
-            class="pdf mt-3 fa-solid fa-file-pdf fa-2xl"
-            style="color: #711dd7;"
-            data-date="{{po.createdAt}}"
-            data-ponumber="{{po.po_number}}"
-            data-vendorinvoice="{{po.invoice_number}}"
-            data-vendorname="{{po.vendor_name}}"
-            data-vendoraddress="{{po.vendor_address}}"
-            data-vendorcity="{{po.vendor_city}}"
-            data-vendorstate="{{po.vendor_state}}"
-            data-vendorzip="{{po.vendor_zip}}"
-            data-vendorgoods="{{po.goods}}"
-            data-vendordescription="{{po.description}}"
-            data-vendorcost="{{po.cost}}"
-          ></i>
-        </div>
-      </li>
-    {{/each}}
-  </ul>
+<div class="main-container">
+  <header>
+    <h1>Purchase Orders</h1>
+  </header>
+  <div class="container">
+    <ul
+      class="po-list"
+      data-companyname="{{company.name}}"
+      data-companyaddress="{{company.address}}"
+      data-companycity="{{company.city}}"
+      data-companystate="{{company.state}}"
+      data-companyzip="{{company.zip}}"
+      data-companyphone="{{company.phone}}"
+    >
+      {{#each pos as |po|}}
+        <li class="po column-3 flex justify-between" data-id="{{po.id}}">
+          <div>
+            <span class="po-number">PO# {{po.po_number}}</span>
+            <br />
+            <span class="po-date">Date Created: {{format_date po.createdAt}}</span>
+            <p>Product/Service: {{po.goods}}</p>
+          </div>
+          <div>
+            <i
+              class="pdf mt-3 fa-solid fa-file-pdf fa-2xl"
+              style="color: #711dd7;"
+              data-date="{{format_date po.createdAt}}"
+              data-ponumber="{{po.po_number}}"
+              data-vendorinvoice="{{po.invoice_number}}"
+              data-vendorname="{{po.vendor_name}}"
+              data-vendoraddress="{{po.vendor_address}}"
+              data-vendorcity="{{po.vendor_city}}"
+              data-vendorstate="{{po.vendor_state}}"
+              data-vendorzip="{{po.vendor_zip}}"
+              data-vendorgoods="{{po.goods}}"
+              data-vendordescription="{{po.description}}"
+              data-vendorcost="{{po.cost}}"
+            ></i>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
 
+{{!-- Scripts for PO View Page and PDF Generation --}}
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+></script>
 
-<!-- Include jsPDF and jspdf-autotable using script tags -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.6.0/jspdf.plugin.git e.min.js"></script> --}}
+{{! <script src="/js/jspdf.js"></script> }}
 
-{{!-- <script src="/js/jspdf.js"></script> --}}
 <script src="/js/jspdf.plugin.autotable.js"></script>
-
 
 <script type="module" src="/js/poPDF.js"></script>
 <script type="module" src="/js/poView.js"></script>

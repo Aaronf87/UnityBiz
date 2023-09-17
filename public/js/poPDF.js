@@ -17,7 +17,10 @@ const poPDF = async (
   vendorDescription,
   vendorCost
 ) => {
-  // Create a jsPDF instance
+  // *** Create a new instance of jspdf class from the jspdf library.
+  // The window object is a global object in the web browser environment
+  // Here we are accessing the jspdf library globally.
+  // Reference the script in the po-view.handlebars file and the library in js folder. ***
   const doc = new window.jspdf.jsPDF();
 
   // Company Name: Top Left Corner
@@ -75,8 +78,8 @@ const poPDF = async (
 
   // Add a table for the Vendor Information
   const vendorData = [
-    ["Invoice", `${vendorInvoice}`, "", "", "", ""],
-    ["Name", `${vendorName}`, "", "", "", ""],
+    ["Vendor Invoice", `${vendorInvoice}`, "", "", "", ""],
+    ["Company", `${vendorName}`, "", "", "", ""],
     ["Address", `${vendorAddress}`, "", "", "", ""],
     ["City", `${vendorCity}`, "", "", "", ""],
     ["State", `${vendorState}`, "", "", "", ""],
@@ -148,7 +151,7 @@ const poPDF = async (
   });
 
   // Add a section for Total Cost
-  const totalCostText = `Total Cost: ${vendorCost}`;
+  const totalCostText = `Total Cost: $ ${vendorCost}`;
   doc.setFontSize(16);
 
   // Get the width of the page
@@ -182,4 +185,6 @@ const poPDF = async (
   doc.save(`PO-${poNumber}.pdf`);
 };
 
+// Exporting poPDF as the default export of the module
+// to make the poPDF module accessible in the importing module.
 export default poPDF;

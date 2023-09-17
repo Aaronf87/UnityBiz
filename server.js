@@ -12,12 +12,11 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 require("dotenv").config();
 
 // Import the custom helper methods
-//*** NO HELPERS YET - WILL CREATE LATER ***
-// const helpers = require("./utils/helpers");
+const helpers = require("./util/helpers");
 
 // Import express-handlebars
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({ helpers });
 
 // Import the routes.
 const routes = require("./controllers");
@@ -59,9 +58,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware pointing to the public directory (absolute path).
 app.use(express.static(path.join(__dirname, "public")));
-
-// app.use(express.static('public'));
-app.use('/public', express.static('util'));
 
 //Send all the requests that begin with / to the index.js in the routes folder.
 app.use(routes);
