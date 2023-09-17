@@ -9,9 +9,15 @@
                     <img src="../assets/logo.svg" class="h-20" alt="UnityBiz Logo" />
                 </a>
             </div>
+                {{#if logged_in}}
+            <button 
+                class=" logout-btn rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">
+                Logout<span aria-hidden="true">&rarr;</span></button>
+                {{else}}
             <a href="/employee/login"
                 class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">
                 Login<span aria-hidden="true">&rarr;</span></a>
+                {{/if}}
     </div>
     </nav>
     </div>
