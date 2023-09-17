@@ -21,14 +21,14 @@
           <div>
             <span class="po-number">PO# {{po.po_number}}</span>
             <br />
-            <span class="po-date">Date: {{po.createdAt}}</span>
-            <p>Service: {{po.goods}}</p>
+            <span class="po-date">Date Created: {{format_date po.createdAt}}</span>
+            <p>Product/Service: {{po.goods}}</p>
           </div>
           <div>
             <i
               class="pdf mt-3 fa-solid fa-file-pdf fa-2xl"
               style="color: #711dd7;"
-              data-date="{{po.createdAt}}"
+              data-date="{{format_date po.createdAt}}"
               data-ponumber="{{po.po_number}}"
               data-vendorinvoice="{{po.invoice_number}}"
               data-vendorname="{{po.vendor_name}}"
@@ -50,9 +50,9 @@
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
 ></script>
-{{! <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.6.0/jspdf.plugin.git e.min.js"></script> }}
 
 {{! <script src="/js/jspdf.js"></script> }}
+
 <script src="/js/jspdf.plugin.autotable.js"></script>
 
 <script type="module" src="/js/poPDF.js"></script>

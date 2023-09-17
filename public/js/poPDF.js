@@ -75,8 +75,8 @@ const poPDF = async (
 
   // Add a table for the Vendor Information
   const vendorData = [
-    ["Invoice", `${vendorInvoice}`, "", "", "", ""],
-    ["Name", `${vendorName}`, "", "", "", ""],
+    ["Vendor Invoice", `${vendorInvoice}`, "", "", "", ""],
+    ["Company", `${vendorName}`, "", "", "", ""],
     ["Address", `${vendorAddress}`, "", "", "", ""],
     ["City", `${vendorCity}`, "", "", "", ""],
     ["State", `${vendorState}`, "", "", "", ""],
@@ -148,7 +148,7 @@ const poPDF = async (
   });
 
   // Add a section for Total Cost
-  const totalCostText = `Total Cost: ${vendorCost}`;
+  const totalCostText = `Total Cost: $ ${vendorCost}`;
   doc.setFontSize(16);
 
   // Get the width of the page
