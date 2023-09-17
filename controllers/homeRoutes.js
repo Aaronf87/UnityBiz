@@ -6,7 +6,9 @@ const { Company, Employee, Newsletter, PO } = require("../models");
 // LANDING PAGE: Display the landing page.
 router.get("/", async (req, res) => {
   try {
-    res.render("landing");
+    res.render("landing", {
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
