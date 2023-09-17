@@ -1,3 +1,4 @@
+// Import the function that creates the PDF
 import poPDF from "./poPDF.js";
 
 // Select the po-list element to obtain information for the PDF
