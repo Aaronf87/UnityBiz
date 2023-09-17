@@ -104,6 +104,13 @@ router.get("/po", async (req, res) => {
 
 router.get("/po/view", async (req, res) => {
   try {
+    const companyData = await Company.findOne({
+      where: { id: req.session.company_id },
+      attributes: ["name", "phone", "state", "city", "address", "zip"],
+    });
+
+    const company = companyData.get({ plain: true });
+
     const poData = await PO.findAll({
       where: { company_id: req.session.company_id },
       order: [["createdAt", "DESC"]],
@@ -115,10 +122,12 @@ router.get("/po/view", async (req, res) => {
     );
 
     // *** DELETE THIS CONSOLE.LOG
+    console.log(company)
     console.log(pos);
 
     res.render("po-view", {
       pos,
+      company,
       logged_in: req.session.logged_in,
       company_id: req.session.company_id,
       user_id: req.session.user_id,
