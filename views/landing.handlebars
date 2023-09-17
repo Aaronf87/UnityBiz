@@ -2,40 +2,30 @@
     <div class="bg-white">
 
         {{!-- Nav Bar --}}
-        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <nav class="flex items-center justify-between p-3 lg:px-7" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                <a href="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">UnityBiz</span>
                     <img src="../assets/logo.svg" class="h-20" alt="UnityBiz Logo" />
                 </a>
             </div>
-            <div class="lg:flex lg:gap-x-12">
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">About
-                    us</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Our
-                    vision</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Who we
-                    are</a>
-                <a href="/employee/signup" class="text-sm font-semibold leading-6 text-gray-900">
-                    Employee Sign Up
-                    <span aria-hidden="true">&rarr;</span></a>
-            </div>
-            <div class="lg:flex lg:flex-1 lg:justify-end">
-                <a href="/employee/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                <a href="/employee/login"
+                        class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300"> Login<span
                         aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
     </div>
 </header>
 
-<div class="relative isolate px-6 pt-14 lg:px-8">
+
+<div class="relative isolate px-6 pt-14 lg:px-8 md:max-xl">
     <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#a8e370] to-[#6dcd85] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
         </div>
     </div>
     <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+        <div class="sm:mb-8 sm:flex sm:justify-center">
             <div class="text-center">
                 <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Ready to take your business to
                     the next level? </h1><br />
@@ -45,7 +35,9 @@
                     Your Unified Business Solution!</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     <a href="/company/signup"
-                        class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Company Sign Up</a>
+                        class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">Company Sign Up</a>
+                        <a href="/employee/signup"
+                        class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">Employee Sign Up</a>
                 </div>
             </div>
         </div>
@@ -55,10 +47,10 @@
             <section class="mb-32">
 
                 <!--About us-->
-                <div class="mb-16 flex flex-wrap">
+                <div class="mb-20 flex flex-wrap">
                     <div class="mb-6 w-full shrink-0 grow-0 basis-auto lg:mb-0 lg:w-6/12 lg:pr-6">
                         <div class="ripple relative overflow-hidden rounded-lg bg-cover bg-[50%] bg-no-repeat shadow-lg dark:shadow-black/20"
-                            data-te-ripple-init data-te-ripple-color="light">
+                            >
                             <img src="../assets/aboutus11 Large.png" class="w-full" alt="about-us" />
                             <div
                                 class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
@@ -68,7 +60,7 @@
 
                     <div class="w-full shrink-0 grow-0 basis-auto lg:w-6/12 lg:pl-6">
                         <h3 class="mb-4 text-2xl font-bold">About us</h3>
-                        <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+                        <p class="mb-12 text-neutral-500 dark:text-neutral-300">
                             At UnityBiz, we understand the unique challenges that small
                             companies face in managing their day-to-day operations
                             efficiently. That's why we've developed a comprehensive platform
@@ -81,7 +73,7 @@
                 </div>
 
                 <!--Vision -->
-                <div class="mb-16 flex flex-wrap lg:flex-row-reverse">
+                <div class="mb-20 flex flex-wrap lg:flex-row-reverse">
                     <div class="mb-6 w-full shrink-0 grow-0 basis-auto lg:mb-0 lg:w-6/12 lg:pl-6">
                         <div class="ripple relative overflow-hidden rounded-lg bg-cover bg-[50%] bg-no-repeat shadow-lg dark:shadow-black/20"
                             data-te-ripple-init data-te-ripple-color="light">
