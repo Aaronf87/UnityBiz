@@ -1,3 +1,5 @@
+const newsletterDiv = document.getElementById("newsletters");
+
 // Array to hold newsletters
 let newsletters = [];
 
@@ -21,7 +23,7 @@ function hideModal() {
 
 // Function to update DOM with new newsletter
 function addNewsletterToDOM(newsletter) {
-  const newsletterDiv = document.getElementById("newsletters");
+
   
   // Provide a default image if 'image' is empty
   const imageUrl = newsletter.image || 'https://via.placeholder.com/640x360.png?text=No+Image';
@@ -86,14 +88,16 @@ async function deleteNewsletter(id) {
   // Function to create a newsletter
   async function createNewsletter(title, content, image) {
   try {
-    const companyId = sessionStorage.getItem("company_id");
-    const userId = sessionStorage.getItem("user_id");
+    const company_id = newsletterDiv.dataset.company;
+    console.log(company_id);
+    const user_id = newsletterDiv.dataset.user;
+    console.log(user_id)
     const response = await fetch('/api/news', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, content, image, companyId, userId }),
+      body: JSON.stringify({ title, content, image, company_id, user_id }),
     });
 
     if (response.ok) {
