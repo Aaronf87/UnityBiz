@@ -52,6 +52,10 @@ router.get("/employee/login", async (req, res) => {
 
 // HOME: Display the newsletters and navbar
 router.get("/home", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const newsData = await Newsletter.findAll({
       where: { company_id: req.session.company_id },
@@ -80,6 +84,10 @@ router.get("/home", async (req, res) => {
 });
 
 router.get("/po", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const companyData = await Company.findOne({
       where: { id: req.session.company_id },
@@ -105,6 +113,10 @@ router.get("/po", async (req, res) => {
 });
 
 router.get("/po/view", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/redirect");
+    return;
+  }
   try {
     const companyData = await Company.findOne({
       where: { id: req.session.company_id },
@@ -134,6 +146,14 @@ router.get("/po/view", async (req, res) => {
       first_name: req.session.first_name,
       last_name: req.session.last_name,
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/redirect", async (req, res) => {
+  try {
+    res.render("redirect");
   } catch (err) {
     res.status(500).json(err);
   }
