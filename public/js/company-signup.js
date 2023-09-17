@@ -1,7 +1,7 @@
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  // Collect values from the signup form
+  // Collect values from the company signup form
   const name = document.querySelector("#company-name").value.trim();
   const phone = document.querySelector("#phone-number").value.trim();
   const state = document.querySelector("#region").value.trim();
@@ -42,7 +42,6 @@ const signupFormHandler = async (event) => {
 
     const companyData = await response.json();
     if (response.ok) {
-
       // Alert the user what their company ID is
       alert(
         `Company Successfully Created!\n 
@@ -50,13 +49,13 @@ const signupFormHandler = async (event) => {
         Your Company ID is: ${companyData.company.company_id}`
       );
 
-      // If successful, redirect the browser to the company page
-      document.location.replace("/home");
+      // If successful, redirect the browser to the company landing page
+      document.location.replace("/");
     } else {
       alert(`${companyData.message}`);
     }
   }
 };
 
-// Sign-Up Button
+// Company Sign-Up Button
 document.querySelector("#signUp").addEventListener("click", signupFormHandler);

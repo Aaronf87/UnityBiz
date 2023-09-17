@@ -1,24 +1,23 @@
-// create login variables to getelementsbyid
+// Create login variables to getelementsbyid
 const signIn = document.getElementById("signIn");
 
-// create event listener for sign in button
+// Create event listener for sign in button
 
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  console.log("loginFormHandler");
   // Collect values from the login form
   const username = document.querySelector("#employee-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
+  // If username or password is empty, alert user
   if (!username || !password) {
     alert("Form must not be empty");
     return;
   }
 
+  // If username and password are not empty, send a POST request to the API endpoint
   if (username && password) {
-
-    // Send a POST request to the API endpoint
     const response = await fetch("/api/employee/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -36,7 +35,7 @@ const loginFormHandler = async (event) => {
   }
 };
 
-// Click the login button
+// Click the employee login button
 document
   .querySelector("#signIn")
   .addEventListener("click", loginFormHandler);

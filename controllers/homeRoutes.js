@@ -67,9 +67,6 @@ router.get("/home", async (req, res) => {
       newsletter.get({ plain: true })
     );
 
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(newsletters);
-
     res.render("home", {
       newsletters,
       logged_in: req.session.logged_in,
@@ -83,6 +80,7 @@ router.get("/home", async (req, res) => {
   }
 });
 
+// Create PO: Display the create PO page
 router.get("/po", async (req, res) => {
   if (!req.session.logged_in) {
     res.redirect("/redirect");
@@ -95,9 +93,6 @@ router.get("/po", async (req, res) => {
     });
 
     const company = companyData.get({ plain: true });
-
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(company);
 
     res.render("PO", {
       company,
@@ -112,6 +107,7 @@ router.get("/po", async (req, res) => {
   }
 });
 
+// View PO: Display the view PO page
 router.get("/po/view", async (req, res) => {
   if (!req.session.logged_in) {
     res.redirect("/redirect");
@@ -133,10 +129,6 @@ router.get("/po/view", async (req, res) => {
 
     const pos = poData.map((singlePO) => singlePO.get({ plain: true }));
 
-    // *** DELETE THIS CONSOLE.LOG
-    console.log(company);
-    console.log(pos);
-
     res.render("po-view", {
       pos,
       company,
@@ -151,6 +143,7 @@ router.get("/po/view", async (req, res) => {
   }
 });
 
+// Redirect: Display the redirect page
 router.get("/redirect", async (req, res) => {
   try {
     res.render("redirect");
@@ -159,6 +152,7 @@ router.get("/redirect", async (req, res) => {
   }
 });
 
+// 404: Display the 404 page
 router.get("*", async (req, res) => {
   res.render("404");
 });

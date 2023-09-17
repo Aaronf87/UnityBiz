@@ -1,24 +1,11 @@
-const router = require('express').Router();
-const { Newsletter, Employee } = require('../../models');
+const router = require("express").Router();
+const { Newsletter } = require("../../models");
 const withAuth = require("../../util/auth");
 
 // The `/api/news` endpoint
 
-// GET all newsletter posts
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     const newsData = await Newsletter.findAll({
-//       order: [["createdAt", "DESC"]],
-//       include: [{ model: Employee, attributes: ["first_name", "last_name"] }],
-//     });
-//     res.status(200).json(newsData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 // CREATE: a new newsletter post
-router.post('/', withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const newsData = await Newsletter.create(req.body);
     res.status(201).json(newsData);
@@ -78,5 +65,3 @@ router.delete("/:id", withAuth, async (req, res) => {
 // });
 
 module.exports = router;
-
-

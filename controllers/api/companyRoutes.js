@@ -3,16 +3,7 @@ const { Company } = require("../../models");
 
 // The `/api/company` endpoint
 
-// ***TEST ROUTE WILL BE DELETED: Get all employees
-// router.get("/", async (req, res) => {
-//   try {
-//     const employeeData = await Company.findAll({});
-
-//     res.status(200).json({ employee: employeeData });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// *** FUTURE FEATURE ADMIN CONTROL: BACKEND READY ***
 
 // CREATE COMPANY: Company Creation Route
 router.post("/", async (req, res) => {
