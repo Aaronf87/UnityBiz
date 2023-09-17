@@ -1,3 +1,5 @@
+{{> sidebar }}
+
 <link rel="stylesheet" href="/css/po-form.css" />
 
 {{! Purchase Order Form }}
@@ -5,20 +7,33 @@
   <div class="columns-2">
 
     {{! Letter header with Company Information}}
-    <div class="header">
-      <p class="company-name">Company Name, Inc.</p>
-      <p class="company-details">Phone: (123) 456-7890</p>
-      <p class="company-details">State: California</p>
-      <p class="company-details">City: San Francisco</p>
-      <p class="company-address">Address: 123 Main Street, Suite 456</p>
-      <p class="company-address">Zip Code: 12345</p>
+    <div class="letter-header">
+      <p id="company-name" data-id="{{company_id}}" data-user="{{user_id}}" data-name="{{company.name}}">{{company.name}}</p>
+      <p
+        id="company-address"
+        class="company-details"
+        data-address="{{company.address}}"
+      >{{company.address}}</p>
+      <p
+        id="company-city"
+        class="company-details"
+        data-city="{{company.city}}"
+        data-state="{{company.state}}"
+        data-zip="{{company.zip}}"
+      >{{company.city}}, {{company.state}}, {{company.zip}}</p>
+      <p
+        id="company-phone"
+        class="company-details"
+        data-phone="{{company.phone}}"
+      >Phone: {{company.phone}}</p>
     </div>
 
-    <h1 class="section-header m-36 text-end po">Purchase Order Form</h1>
+    <h1 class="section-header m-36 text-end blend">Purchase Order Form</h1>
   </div>
 
   <form action="#" method="post">
     <div class="columns-2">
+
       {{! Vendor Information }}
       <div>
         <h3 class="section-header">Vendor Information</h3>
@@ -100,8 +115,10 @@
       </div>
     </div>
 
-    <div class="form-group flex justify-center">
-      <input type="submit" value="Submit" />
+    <div class="flex justify-center">
+      <button class="submit-btn">Submit</button>
     </div>
   </form>
 </div>
+
+<script src="/js/poFormHandler.js"></script>
