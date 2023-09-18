@@ -1,11 +1,11 @@
 # UnityBiz [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-&nbsp;<p style="text-align: center;">
+<br><p style="text-align: center;">
 [![UnityBiz Logo](./public/assets/medium-logo.svg)]((https://unitybiz-fd2efb602da8.herokuapp.com/))
 </p>
 
 
-&nbsp;<p style="text-align: center;">
+<br><p style="text-align: center;">
 [![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://handlebarsjs.com/)
 [![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/Overview.en.html)
 [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/docs/installation)
