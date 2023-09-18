@@ -108,3 +108,30 @@ N/A
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
  **The MIT License:** Please refer to the LICENSE in the repository.
 
+## Screenshots
+>Landing Page
+![Landing Page](./public/assets/screenshots/landingpage.png)  
+
+>Create Purchase Order
+![Create Purchase Order](./public/assets/screenshots/createPO.png)  
+
+>View All Purchase Orders
+![View All Purchase Orders](./public/assets/screenshots/viewPO's.png)  
+
+>Generate PDF by pressing the PDF button
+![Generate PDF by pressing the PDF button](./public/assets/screenshots/generatePDF.png)  
+
+>View Company Newsletters
+![View Company Newsletters](./public/assets/screenshots/newsletter.png)  
+
+>Company and Employee Login
+![Company and Employee Login](./public/assets/screenshots/company-employee-login.png)  
+
+>Company and Employee Sign Up 
+![Company and Employee Sign Up](./public/assets/screenshots/company-employee-signup.png)  
+
+>404 Page
+![404 Page](./public/assets/screenshots/404.png)  
+
+>Redirect Page
+![Redirect Page](./public/assets/screenshots/redirect.png)  
