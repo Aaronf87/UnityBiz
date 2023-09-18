@@ -101,7 +101,9 @@ Here are some steps to begin using this application:
 
 ## Credits
 
-N/A
+Download jsPDF Library: https://www.npmjs.com/package/jspdf
+
+Download jsPDF-autotable Library: https://www.npmjs.com/package/jspdf-autotable
 
 ## License
 
