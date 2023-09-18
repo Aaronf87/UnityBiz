@@ -1,7 +1,7 @@
 # UnityBiz [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <br> <p align="center"> 
-[![UnityBiz Logo](./public/assets/medium-logo.svg)]((https://unitybiz-fd2efb602da8.herokuapp.com/))
+[![UnityBiz Logo](./public/assets/medium-logo.svg)](https://unitybiz-fd2efb602da8.herokuapp.com/)
 </p>
 
 
