@@ -4,12 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UnityBiz</title>
+
+    {{!-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Ysabeau+Infant:wght@300&family=Ysabeau+Office:wght@300&family=Ysabeau+SC:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    {{!-- Font Awesome --}}
     <script
       src="https://kit.fontawesome.com/809c035b81.js"
       crossorigin="anonymous"
     ></script>
+
+    {{!-- Tailwind CSS --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>UnityBiz</title>
   </head>
 
   <body>
@@ -20,6 +32,6 @@
 
   </body>
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
   {{/if}}
 </html>

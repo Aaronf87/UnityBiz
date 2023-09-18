@@ -48,13 +48,65 @@ const renderPDF = async (element) => {
     vendorDescription,
     vendorCost
   );
-  return
+  return;
+};
+
+// Toggle PO Details View
+const toggleViewPO = async (event) => {
+  const poID = event.getAttribute("id");
+  const selectedPO = document.querySelector(`#${poID}-switch`);
+
+  if (selectedPO.classList.contains("hide")) {
+    selectedPO.classList.remove("hide");
+  } else {
+    selectedPO.classList.add("hide");
+  }
+};
+
+// Delete PO
+const deletePO = async (event) => {
+  const id = event.dataset.id;
+  console.log(id);
+
+  if (id) {
+    // Send a DELETE request to the API endpoint
+    const response = await fetch(`/api/po/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful reload the page
+      location.reload();
+    } else {
+      alert(response.statusText);
+    }
+  }
 };
 
 // Add an event listener to the po-list element that only listens for when you click on a PDF button.
 document.querySelector(".po-list").addEventListener("click", (event) => {
   if (event.target.classList.contains("pdf")) {
     renderPDF(event.target);
+  } else {
+    return;
+  }
+});
+
+// Toggle PO View
+document.querySelector(".po-list").addEventListener("click", (event) => {
+  if (event.target.classList.contains("toggle")) {
+    toggleViewPO(event.target);
+  } else {
+    return;
+  }
+});
+
+// Delete PO
+document.querySelector(".po-list").addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-btn")) {
+    deletePO(event.target);
   } else {
     return;
   }
