@@ -1,23 +1,41 @@
 /* CSS styles for the Purchase Orders list */
-/* body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-} */
 
 .main-container {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   padding: 20px;
-  margin-left: 300px;
+  margin-left: 290px;
 }
 
 header {
   background: linear-gradient(to bottom right, #474d4acb, #000000af);
   font-variant: small-caps;
+  font-family: "Ysabeau SC", sans-serif;
+  border-radius: 10px;
   color: #ffffff;
   text-align: center;
   padding: 10px 0;
+  max-width: 1080px;
+}
+
+.bg-texture {
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #c4c4c4 100px
+    ),
+    repeating-linear-gradient(#ffffff, #ffffff);
+  background-color: #c4c4c4;
+  border-radius: 15px;
+  max-width: 1080px;
+}
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  max-width: 1080px;
 }
 
 .container h1 {
@@ -27,10 +45,12 @@ header {
 .container {
   max-width: 800px;
   margin: 20px auto;
+  padding: 300px;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  font-family: "Roboto", sans-serif;
 }
 
 .container ul {
@@ -49,7 +69,6 @@ header {
 
 .container li:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
 }
 
 .container .po-number {
@@ -58,4 +77,48 @@ header {
 
 .container .po-date {
   color: #777;
+}
+
+.info {
+  margin-left: 5px;
+  color: #080808;
+}
+
+.pdf {
+  color: rgb(114, 58, 81);
+  transition: all 0.1s ease-in;
+}
+
+.pdf:hover {
+  color: #df0383;
+  font-size: 2.4em;
+  cursor: pointer;
+}
+
+.pdf:active {
+  color: rgb(95, 21, 233);
+  font-size: 2.5em;
+}
+
+.toggle,
+.delete-btn {
+  color: rgb(114, 58, 81);
+  transition: all 0.1s ease-in;
+}
+
+.toggle:hover,
+.delete-btn:hover {
+  color: #df0383;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.toggle:active,
+.delete-btn:active {
+  color: rgb(95, 21, 233);
+  font-size: 1.3em;
+}
+
+.hide {
+  display: none;
 }

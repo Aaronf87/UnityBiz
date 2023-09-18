@@ -40,12 +40,18 @@
                     designed to help you succeed, one task at a time. Discover UnityBiz –
                     Your Unified Business Solution!</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
+                    {{#if logged_in}}
+                    <a href="/home"
+                        class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">Company
+                        Home</a>
+                    {{else}}
                     <a href="/company/signup"
                         class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">Company
                         Sign Up</a>
                     <a href="/employee/signup"
                         class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300">Employee
                         Sign Up</a>
+                    {{/if}}
                 </div>
             </div>
         </div>
